@@ -50,8 +50,12 @@
   margin: 21px 50px 21px 0px;
 }
 
-/* Announcement button style */
+/* Base button styles */
 .announcement-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 11px 20px 11px 41px;
   background: #FFF544;
   font-family: 'Jost';
@@ -62,6 +66,61 @@
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  overflow: hidden;
+  transition: color 0.4s ease;
+}
+
+/* Background fill effect (left to right) */
+.announcement-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #000;
+  z-index: 0;
+  transition: width 0.4s ease;
+}
+
+/* Ensure text + icons stay above background */
+.announcement-button * {
+  position: relative;
+  z-index: 1;
+}
+
+/* On hover – expand background + change text color */
+.announcement-button:hover {
+  color: #fff;
+}
+.announcement-button:hover::before {
+  width: 100%;
+}
+
+/* SVG icons control */
+.announcement-button svg {
+  margin-left: 18px;
+  transition: opacity 0.3s ease;
+}
+
+/* Default (black) icon */
+.announcement-button .icon-default {
+  opacity: 1;
+}
+
+/* Hover (white) icon */
+.announcement-button .icon-hover {
+  position: absolute;
+  right: 20px;
+  opacity: 0;
+}
+
+/* Swap icons on hover */
+.announcement-button:hover .icon-default {
+  opacity: 0;
+}
+.announcement-button:hover .icon-hover {
+  opacity: 1;
 }
 
 /* Hero background (dynamic from schema) */
