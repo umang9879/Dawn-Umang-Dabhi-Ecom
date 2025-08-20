@@ -392,47 +392,43 @@
 {% endfor %}
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-  // ---------- Announcement marquee ----------
-  const marqueeHost = document.querySelector(".announcement_bar_new");
-  const autoplay = marqueeHost?.dataset.autoplay === "true";
-
-  if (autoplay) {
-    const items = document.querySelectorAll(".announcement-text");
-    if (items.length && window.Vennila?.marquee) {
-      Vennila.marquee(items, {
+  document.addEventListener('DOMContentLoaded', function () {
+    var autoplay = document.querySelector('.announcement_bar_new')?.dataset.autoplay === 'true';
+    if (autoplay) {
+      const elements = document.querySelectorAll('.announcement-text');
+      Vennila.marquee(elements, {
         duration: 3000,
         loop: true,
         pauseOnHover: true
       });
     }
-  }
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+  const openIcon = document.querySelector('.header_mobile_open');
+  const closeIcon = document.querySelector('.header_mobile_close');
+  const dropdown = document.querySelector('.mobile_dropdown');
 
-    const openIcon = document.querySelector('.header_mobile_open');
-      const closeIcon = document.querySelector('.header_mobile_close');
-      const dropdown = document.querySelector('.mobile_dropdown');
+  openIcon.addEventListener('click', () => {
+    openIcon.style.display = 'none';
+    closeIcon.style.display = 'inline-block';
 
-      openIcon.addEventListener('click', () => {
-        openIcon.style.display = 'none';
-        closeIcon.style.display = 'inline-block';
+    // Slide down the dropdown
+    dropdown.style.display = 'block';
+    dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+    dropdown.style.transition = 'max-height 0.3s ease-out';
+  });
 
-        // Slide down the dropdown
-        dropdown.style.display = 'block';
-        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
-        dropdown.style.transition = 'max-height 0.3s ease-out';
-      });
+  closeIcon.addEventListener('click', () => {
+    closeIcon.style.display = 'none';
+    openIcon.style.display = 'inline-block';
 
-      closeIcon.addEventListener('click', () => {
-        closeIcon.style.display = 'none';
-        openIcon.style.display = 'inline-block';
-
-        // Slide up the dropdown
-        dropdown.style.maxHeight = '0';
-        dropdown.addEventListener('transitionend', function hideAfterSlide() {
-          dropdown.style.display = 'none';
-          dropdown.removeEventListener('transitionend', hideAfterSlide);
-        });
-      });
+    // Slide up the dropdown
+    dropdown.style.maxHeight = '0';
+    dropdown.addEventListener('transitionend', function hideAfterSlide() {
+      dropdown.style.display = 'none';
+      dropdown.removeEventListener('transitionend', hideAfterSlide);
+    });
+  });
 });
 
 </script>
