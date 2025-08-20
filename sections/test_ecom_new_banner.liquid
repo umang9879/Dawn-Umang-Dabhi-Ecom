@@ -1,3 +1,138 @@
+{% comment %}
+  Custom Header Section with Logo, Announcement, Button, Hero, Image + Sustainability Description
+{% endcomment %}
+
+<header class="site_heade_newr">
+  <div class="header_logo">
+     {% if section.settings.logo %}
+        <svg class="header_mobile_open" xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" style="margin-left: 16px;">
+          <path d="M1 6H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 1H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 11H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <svg class="header_mobile_close" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" style="display: none; margin-left: 16px;">
+          <path d="M1 13.9994L13.7279 1.2715" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 1L13.7279 13.7279" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="Logo" class="site-logo-img" />
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="announcement_bar_new header_desk" data-autoplay="{{ section.settings.autoplay }}">
+      <div class="announcement-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'announcement' %}
+            <div class="announcementt" data-index="{{ forloop.index }}">
+              <p class="announcement_text">{{ block.settings.text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="header_button header_desk">
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="announcement-button">
+        {{ section.settings.button_text }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="12" viewBox="0 0 26 12" fill="none" style="margin-left: 18px;">
+          <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"/>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile_dropdown" style="display: none;">
+    {% if section.blocks.size > 0 %}
+      <div class="announcement_bar_new" data-autoplay="{{ section.settings.autoplay }}">
+        <div class="announcement-wrapper">
+          {% for block in section.blocks %}
+            {% if block.type == 'announcement' %}
+              <div class="announcementt" data-index="{{ forloop.index }}">
+                <p class="announcement_text">{{ block.settings.text }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="header_button">
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="announcement-button">
+          {{ section.settings.button_text }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="12" viewBox="0 0 26 12" fill="none" style="margin-left: 18px;">
+            <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+{% comment %} Background Image {% endcomment %}
+{% if section.settings.background_image != blank %}
+  <div class="hero_wrapper {% if section.settings.hide_mobile %}hide_mobile_bg{% endif %}">
+  </div>
+{% endif %}
+
+{% comment %} Image Content & Sustainability {% endcomment %}
+{% for block in section.blocks %}
+  {% if block.type == 'image_content' %}
+    <div class="gift-guide-section gift-guide-{{ block.settings.content_position }}">
+      <div class="gift-guide-content">
+        <h2 class="gift-guide-heading">{{ block.settings.image_content_heading }}</h2>
+        <div class="gift-guide-description">{{ block.settings.image_content_description }}</div>
+        <a href="#" class="gift-guide-button gift-guide-button-desk" style="
+          background-color: {{ block.settings.button_background_color }};
+          color: {{ block.settings.button_text_color }};
+          border-radius: {{ block.settings.button_border_radius }}px;
+          transition: all {{ block.settings.button_hover_transition_duration }}ms {{ block.settings.button_hover_transition }};
+        ">
+          {{ block.settings.button_text }}
+          {% if block.settings.show_arrow %}
+            <span class="gift-guide-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"/></svg>
+            </span>
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="gift-guide-image">
+        {% if block.settings.image_content_img != blank %}
+          <img src="{{ block.settings.image_content_img | img_url: 'original' }}" alt="Gift Guide Image" class="desktop-img" width="100%" />
+        {% endif %}
+        {% if block.settings.image_content_img_mobile != blank %}
+          <img src="{{ block.settings.image_content_img_mobile | img_url: 'original' }}" alt="Gift Guide Image" class="mobile-img" width="100%" />
+        {% endif %}
+        <a href="#" class="gift-guide-button gift-guide-button-mobile" style="
+          background-color: {{ block.settings.button_background_color }};
+          color: {{ block.settings.button_text_color }};
+          border-radius: {{ block.settings.button_border_radius }}px;
+          transition: all {{ block.settings.button_hover_transition_duration }}ms {{ block.settings.button_hover_transition }};
+        ">
+          {{ block.settings.button_text }}
+          {% if block.settings.show_arrow %}
+            <span class="gift-guide-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"/></svg>
+            </span>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.type == 'sustainability_des' %}
+    <div class="sustainability">
+      {{ block.settings.Sustainability_des }}
+    </div>
+  {% endif %}
+{% endfor %}
 
 
 {% schema %}
