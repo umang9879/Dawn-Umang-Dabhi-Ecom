@@ -80,6 +80,29 @@
     },
     "test_ecom_new_banner_tT3JfF": {
       "type": "test_ecom_new_banner",
+      "blocks": {
+        "image_content_nefGGj": {
+          "type": "image_content",
+          "settings": {
+            "image_content_img": "shopify://shop_images/Frame_6.png",
+            "image_content_heading": "<p>The Gift Guide</p>",
+            "image_content_description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+            "button_text": "Shop Now",
+            "show_arrow": true,
+            "button_background_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 0,
+            "button_hover_background_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_transition": "ease",
+            "button_hover_transition_duration": 300,
+            "content_position": "left"
+          }
+        }
+      },
+      "block_order": [
+        "image_content_nefGGj"
+      ],
       "name": "Banner New Test EcomExperts",
       "settings": {
         "autoplay": true,
