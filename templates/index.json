@@ -99,10 +99,17 @@
             "button_hover_transition_duration": 300,
             "content_position": "left"
           }
+        },
+        "announcement_CTdxUV": {
+          "type": "announcement",
+          "settings": {
+            "text": "Find the ideal gift for your loved ones."
+          }
         }
       },
       "block_order": [
-        "image_content_nefGGj"
+        "image_content_nefGGj",
+        "announcement_CTdxUV"
       ],
       "name": "Banner New Test EcomExperts",
       "settings": {
