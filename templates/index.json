@@ -105,11 +105,18 @@
             "button_hover_transition_duration": 300,
             "content_position": "left"
           }
+        },
+        "sustainability_des_yDtFFR": {
+          "type": "sustainability_des",
+          "settings": {
+            "Sustainability_des": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+          }
         }
       },
       "block_order": [
         "announcement_CTdxUV",
-        "image_content_nefGGj"
+        "image_content_nefGGj",
+        "sustainability_des_yDtFFR"
       ],
       "name": "Banner New Test EcomExperts",
       "settings": {
