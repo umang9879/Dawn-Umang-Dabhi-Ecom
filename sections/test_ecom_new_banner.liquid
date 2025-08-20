@@ -50,6 +50,8 @@
   margin: 21px 50px 21px 0px;
 }
 
+
+
 /* Base button styles */
 .announcement-button {
   position: relative;
@@ -67,61 +69,67 @@
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
-  transition: color 0.4s ease;
+  isolation: isolate; /* create stacking context so the bg sits under text */
+  transition: color 0.35s ease;
 }
 
-/* Background fill effect (left to right) */
+/* Background fill effect from left to right */
 .announcement-button::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 100%;
+  inset: 0 100% 0 0; /* start with zero width */
   background: #000;
-  z-index: 0;
-  transition: width 0.4s ease;
+  z-index: -1; /* keep under the content */
+  transition: inset 0.35s ease;
 }
 
-/* Ensure text + icons stay above background */
-.announcement-button * {
+/* Make children sit above the background */
+.announcement-button > * {
   position: relative;
   z-index: 1;
 }
 
-/* On hover – expand background + change text color */
+/* Text color turns white on hover. Important to win against theme rules */
 .announcement-button:hover {
-  color: #fff;
-}
-.announcement-button:hover::before {
-  width: 100%;
+  color: #fff !important;
 }
 
-/* SVG icons control */
+/* Also force nested elements to inherit white where applicable */
+.announcement-button:hover * {
+  color: #fff !important;
+  fill: #fff;
+  stroke: #fff;
+}
+
+/* Expand background on hover */
+.announcement-button:hover::before {
+  inset: 0 0 0 0;
+}
+
+/* Icon swap rules if you added two SVGs: one default and one hover */
 .announcement-button svg {
   margin-left: 18px;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
-/* Default (black) icon */
 .announcement-button .icon-default {
   opacity: 1;
 }
 
-/* Hover (white) icon */
 .announcement-button .icon-hover {
   position: absolute;
   right: 20px;
   opacity: 0;
 }
 
-/* Swap icons on hover */
 .announcement-button:hover .icon-default {
   opacity: 0;
 }
+
 .announcement-button:hover .icon-hover {
   opacity: 1;
 }
+
 
 /* Hero background (dynamic from schema) */
 .hero_wrapper {
