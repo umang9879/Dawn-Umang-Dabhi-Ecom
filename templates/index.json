@@ -81,6 +81,12 @@
     "test_ecom_new_banner_tT3JfF": {
       "type": "test_ecom_new_banner",
       "blocks": {
+        "announcement_CTdxUV": {
+          "type": "announcement",
+          "settings": {
+            "text": "Find the ideal gift for your loved ones."
+          }
+        },
         "image_content_nefGGj": {
           "type": "image_content",
           "settings": {
@@ -99,17 +105,11 @@
             "button_hover_transition_duration": 300,
             "content_position": "left"
           }
-        },
-        "announcement_CTdxUV": {
-          "type": "announcement",
-          "settings": {
-            "text": "Find the ideal gift for your loved ones."
-          }
         }
       },
       "block_order": [
-        "image_content_nefGGj",
-        "announcement_CTdxUV"
+        "announcement_CTdxUV",
+        "image_content_nefGGj"
       ],
       "name": "Banner New Test EcomExperts",
       "settings": {
