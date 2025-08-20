@@ -408,38 +408,31 @@
     }
   }
 
-    // ---------- Mobile menu toggle ----------
-    const openBtn = document.querySelector(".header_mobile_open");
-    const closeBtn = document.querySelector(".header_mobile_close");
-    const dropdown = document.querySelector(".mobile_dropdown");
+    const openIcon = document.querySelector('.header_mobile_open');
+      const closeIcon = document.querySelector('.header_mobile_close');
+      const dropdown = document.querySelector('.mobile_dropdown');
 
-    // Guard if any element missing
-    if (!openBtn || !closeBtn || !dropdown) return;
+      openIcon.addEventListener('click', () => {
+        openIcon.style.display = 'none';
+        closeIcon.style.display = 'inline-block';
 
-    // Initial state
-    closeBtn.style.display = "none";
-    dropdown.style.maxHeight = "0";
-    dropdown.style.overflow = "hidden";
-    dropdown.style.transition = "max-height 0.3s ease-out";
-
-    // Open menu
-    openBtn.addEventListener("click", function () {
-        openBtn.style.display = "none";
-        closeBtn.style.display = "inline-block";
-        dropdown.style.display = "block";
+        // Slide down the dropdown
+        dropdown.style.display = 'block';
         dropdown.style.maxHeight = dropdown.scrollHeight + "px";
-    });
+        dropdown.style.transition = 'max-height 0.3s ease-out';
+      });
 
-    // Close menu
-    closeBtn.addEventListener("click", function () {
-        closeBtn.style.display = "none";
-        openBtn.style.display = "inline-block";
-        dropdown.style.maxHeight = "0";
-        dropdown.addEventListener("transitionend", function hide() {
-        dropdown.style.display = "none";
-        dropdown.removeEventListener("transitionend", hide);
+      closeIcon.addEventListener('click', () => {
+        closeIcon.style.display = 'none';
+        openIcon.style.display = 'inline-block';
+
+        // Slide up the dropdown
+        dropdown.style.maxHeight = '0';
+        dropdown.addEventListener('transitionend', function hideAfterSlide() {
+          dropdown.style.display = 'none';
+          dropdown.removeEventListener('transitionend', hideAfterSlide);
         });
-    });
+      });
 });
 
 </script>
