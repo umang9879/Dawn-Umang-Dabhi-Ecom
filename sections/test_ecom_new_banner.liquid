@@ -1,6 +1,262 @@
+<!-- ============================= -->
+<!-- CSS: Header + Gift Guide Block -->
+<!-- ============================= -->
+{% style %}
+
+/* ----------------------------- */
+/* Generic Button Visibility     */
+/* ----------------------------- */
+.gift-guide-button-mobile {
+  display: none !important;
+}
+.gift-guide-button-desk {
+  display: block;
+}
+
+/* Hide mobile image by default */
+.mobile-img {
+  display: none;
+}
+
+/* Toggle for mobile header menu */
+.header_mobile_open {
+  display: none;
+}
+
+/* ----------------------------- */
+/* Header Styles                 */
+/* ----------------------------- */
+.header_logo img {
+  margin-top: 10px;
+}
+.header_logo {
+  margin: 22px 0px 22px 51px;
+}
+.announcement_text {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
+.site_heade_newr {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_button {
+  margin: 21px 50px 21px 0px;
+}
+
+/* Announcement button style */
+.announcement-button {
+  padding: 11px 20px 11px 41px;
+  background: #FFF544;
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+  line-height: 20.48px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Hero background (dynamic from schema) */
+.hero_wrapper {
+  background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
+  max-width: {{ section.settings.max_width_desk }}px;
+  margin: 0 auto;
+  min-height: {{ section.settings.min_height_desk }}px;
+  background-position: center;
+}
+
+/* ----------------------------- */
+/* Gift Guide Layout             */
+/* ----------------------------- */
+.gift-guide-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Position handling (left vs right) */
+.gift-guide-left .gift-guide-content { margin-left: 67px; order: 1; }
+.gift-guide-left .gift-guide-image { order: 2; }
+.gift-guide-right .gift-guide-content { margin-right: 67px; order: 2; }
+.gift-guide-right .gift-guide-image { order: 1; }
+
+.gift-guide-content {
+  max-width: 500px;
+  flex: 1;
+}
+
+/* Typography */
+.gift-guide-heading { margin: 0; }
+.gift-guide-heading p {
+  font-family: 'Jost';
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100%;
+  margin: 0 0 50px 0;
+}
+.gift-guide-description {
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  margin: 0 0 50px 0;
+}
+
+/* CTA button */
+.gift-guide-button {
+  padding: 14px 23px 14px 55px;
+  gap: 29px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+.gift-guide-button:hover {
+  background-color: var(--hover-bg, #333333);
+  color: var(--hover-text, #ffffff);
+}
+.gift-guide-arrow {
+  font-size: 16px;
+}
+
+/* Sustainability banner */
+.sustainability {
+  font-family: 'Jost';
+  font-size: 16px;
+  text-align: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 0;
+  background: #F5F5F5;
+}
+
+/* ----------------------------- */
+/* Tablet + Laptop Responsive    */
+/* ----------------------------- */
+@media (min-width: 768px) and (max-width: 1280px) {
+  .gift-guide-section {
+    display: block;
+    position: relative;
+  }
+  .gift-guide-left .gift-guide-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FFF;
+    padding: 30px;
+  }
+  .gift-guide-description {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+  }
+  .gift-guide-heading p {
+    font-size: 45px;
+    margin: 0 0 30px 0;
+  }
+  .header_button { margin: 21px 21px 21px 0; }
+  .header_logo { margin: 22px 0 22px 22px; }
+  .site_heade_newr { margin: 0 25px; }
+  .header_logo, .header_button { margin: 0; }
+}
+
+/* ----------------------------- */
+/* Mobile Responsive Styles      */
+/* ----------------------------- */
+@media (max-width: 767px) {
+  .header_mobile_open { display: block; }
+  .site_heade_newr { display: block; width: 100%; }
+  
+  .header_logo {
+    margin: 22px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px 0;
+    background: #F7F7F7;
+  }
+  .header_logo img { margin: 0 auto; }
+  
+  .site-logo-img {
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .header_button {
+    margin: 0 0 30px 0;
+    display: flex;
+  }
+  
+  .announcement-button { margin: 0 auto; }
+  .header_desk, .hide_mobile_bg { display: none; }
+  
+  /* Gift guide mobile button */
+  .gift-guide-button {
+    position: absolute;
+    bottom: 39px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Switch to mobile image */
+  .desktop-img { display: none; }
+  .mobile-img { display: block; }
+  
+  .gift-guide-left .gift-guide-content { margin: 0; }
+  .gift-guide-heading p {
+    font-family: 'Jost';
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 24px 0;
+  }
+  .gift-guide-section {
+    display: block;
+    margin-top: 50px;
+  }
+  .gift-guide-description {
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    margin: 0 0 12px 0;
+  }
+  .gift-guide-left .gift-guide-image { position: relative; }
+  
+  /* Show mobile button instead of desktop */
+  .gift-guide-button-mobile {
+    display: flex !important;
+    padding: 13px 20px;
+    gap: 20px;
+  }
+  .gift-guide-button-desk { display: none; }
+}
+
+/* ----------------------------- */
+/* Mobile Dropdown Animation     */
+/* ----------------------------- */
+.mobile_dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+{% endstyle %}
+
 {% comment %}
   Custom Header Section with Logo, Announcement, Button, Hero, Image + Sustainability Description
 {% endcomment %}
+
 
 <header class="site_heade_newr">
   <div class="header_logo">
