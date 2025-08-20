@@ -85,6 +85,7 @@
           "type": "image_content",
           "settings": {
             "image_content_img": "shopify://shop_images/Frame_6.png",
+            "image_content_img_mobile": "shopify://shop_images/Frame_7.png",
             "image_content_heading": "<p>The Gift Guide</p>",
             "image_content_description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
             "button_text": "Shop Now",
