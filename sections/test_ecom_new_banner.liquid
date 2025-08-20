@@ -391,6 +391,23 @@
 {% endfor %}
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  // ---------- Announcement marquee ----------
+  const marqueeHost = document.querySelector(".announcement_bar_new");
+  const autoplay = marqueeHost?.dataset.autoplay === "true";
+
+  if (autoplay) {
+    const items = document.querySelectorAll(".announcement-text");
+    if (items.length && window.Vennila?.marquee) {
+      Vennila.marquee(items, {
+        duration: 3000,
+        loop: true,
+        pauseOnHover: true
+      });
+    }
+  }
+});
+
 </script>
 {% schema %}
 {
