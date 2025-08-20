@@ -95,6 +95,7 @@
             "image_content_heading": "<p>The Gift Guide</p>",
             "image_content_description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
             "button_text": "Shop Now",
+            "button_text_url": "shopify://collections",
             "show_arrow": true,
             "button_background_color": "#000000",
             "button_text_color": "#ffffff",
