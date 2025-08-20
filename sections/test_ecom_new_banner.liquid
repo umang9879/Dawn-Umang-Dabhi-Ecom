@@ -1,44 +1,227 @@
 <header class="site_heade_newr">
-    <div class="header_logo">
-        {% if section.settings.logo %}
-            {% comment %} mobile-open-close svg icons {% endcomment %}
-            <svg class="header_mobile_open" xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" style="margin-left: 16px;">
-            <path d="M1 6H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M1 1H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M1 11H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            <svg class="header_mobile_close" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" style="display: none; margin-left: 16px;">
-            <path d="M1 13.9994L13.7279 1.2715" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M1 1L13.7279 13.7279" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-
-            {% comment %} mobile-desk same site logo {% endcomment %}
-            <img src="{{ section.settings.logo | img_url: '200x' }}" alt="Logo" class="site-logo-img" />
-        {% else %}
-            {{ shop.name }}
-        {% endif %}
-    </div>
+  {% render 'header-main' %}
 </header>
+
 {% schema %}
 {
   "name": "Header",
+
   "settings": [
+    // General settings for the whole header/banner
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable announcement autoplay",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Main Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Main Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide Background on Mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_width_desk",
+      "label": "Max Width (Desktop px)",
+      "default": 1440,
+      "min": 1200,
+      "max": 2000,
+      "step": 10
+    },
+    {
+      "type": "range",
+      "id": "min_height_desk",
+      "label": "Min Height (Desktop px)",
+      "default": 390,
+      "min": 300,
+      "max": 600,
+      "step": 10
+    }
+  ],
+
+  "blocks": [
+    // Announcement bar block
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
         {
-            "type": "checkbox",
-            "id": "autoplay",
-            "label": "Enable announcement autoplay",
-            "default": true
+          "type": "text",
+          "id": "text",
+          "label": "Announcement Text",
+          "default": "Find the ideal gift for your loved ones."
+        }
+      ]
+    },
+
+    // Image + Content block (supports separate desktop/mobile images + text + button)
+    {
+      "type": "image_content",
+      "name": "Image Content Box",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image Settings"
         },
         {
-            "type": "image_picker",
-            "id": "logo",
-            "label": "Upload Logo"
-        }
-    ],
-    "presets": [
+          "type": "image_picker",
+          "id": "image_content_img",
+          "label": "Desktop Image"
+        },
         {
-            "name": "Banner New Test EcomExperts"
+          "type": "image_picker",
+          "id": "image_content_img_mobile",
+          "label": "Mobile Image"
+        },
+
+        {
+          "type": "header",
+          "content": "Content Box Settings"
+        },
+        {
+          "type": "richtext",
+          "id": "image_content_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "image_content_description",
+          "label": "Description Text"
+        },
+
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_arrow",
+          "label": "Show Arrow Icon",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Button Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "label": "Button Border Radius (px)",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "default": 4
+        },
+
+        {
+          "type": "header",
+          "content": "Button Hover Effects"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_background_color",
+          "label": "Hover Background Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text_color",
+          "label": "Hover Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "select",
+          "id": "button_hover_transition",
+          "label": "Hover Transition Effect",
+          "default": "ease",
+          "options": [
+            { "value": "ease", "label": "Ease" },
+            { "value": "ease-in", "label": "Ease-In" },
+            { "value": "ease-out", "label": "Ease-Out" },
+            { "value": "ease-in-out", "label": "Ease-In-Out" },
+            { "value": "linear", "label": "Linear" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "button_hover_transition_duration",
+          "label": "Transition Duration (ms)",
+          "min": 100,
+          "max": 2000,
+          "step": 100,
+          "default": 300
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content Position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
         }
-    ]
+      ]
+    },
+
+    // Sustainability description block
+    {
+      "type": "sustainability_des",
+      "name": "Sustainability",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Sustainability Description"
+        },
+        {
+          "type": "text",
+          "id": "Sustainability_des",
+          "label": "Description Text"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Banner New Test EcomExperts"
+    }
+  ]
 }
 {% endschema %}
