@@ -182,17 +182,49 @@
 
 /* CTA button */
 .gift-guide-button {
-  padding: 14px 23px 14px 55px;
-  gap: 29px;
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 14px 23px 14px 55px;
+  gap: 29px;
   text-decoration: none;
   font-weight: lighter;
   text-transform: uppercase;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #000;  /* default black bg */
+  color: #fff;             /* default white text */
+  border-radius: 6px;
+  transition: color 0.35s ease;
+}
+/* BG animation */
+.gift-guide-button::before {
+  content: "";
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: #FFF544;  /* hover yellow bg */
+  z-index: -1;
+  transition: inset 0.35s ease;
+}
+.gift-guide-button > * {
+  position: relative;
+  z-index: 1;
 }
 .gift-guide-button:hover {
-  background-color: var(--hover-bg, #333333);
-  color: var(--hover-text, #ffffff);
+  color: #000 !important;
+}
+.gift-guide-button:hover::before {
+  inset: 0 0 0 0;
+}
+
+/* Arrow slide animation */
+.gift-guide-arrow {
+  display: inline-flex;
+  transition: transform 0.35s ease;
+}
+.gift-guide-button:hover .gift-guide-arrow {
+  transform: translateX(4px);
 }
 .gift-guide-arrow {
   font-size: 16px;
@@ -276,6 +308,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
+  
   
   /* Switch to mobile image */
   .desktop-img { display: none; }
