@@ -82,7 +82,8 @@
       "type": "test_ecom_new_banner",
       "name": "Banner New Test EcomExperts",
       "settings": {
-        "autoplay": true
+        "autoplay": true,
+        "logo": "shopify://shop_images/Group_1000007777_1.png"
       }
     }
   },
