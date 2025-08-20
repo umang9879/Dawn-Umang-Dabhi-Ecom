@@ -476,7 +476,7 @@
       <div class="gift-guide-content">
         <h2 class="gift-guide-heading">{{ block.settings.image_content_heading }}</h2>
         <div class="gift-guide-description">{{ block.settings.image_content_description }}</div>
-        <a href="#" class="gift-guide-button gift-guide-button-desk">
+        <a href="{{block.settings.button_text_url}}" class="gift-guide-button gift-guide-button-desk">
         {{ block.settings.button_text }}
         {% if block.settings.show_arrow %}
             <span class="gift-guide-arrow">
@@ -495,12 +495,7 @@
         {% if block.settings.image_content_img_mobile != blank %}
           <img src="{{ block.settings.image_content_img_mobile | img_url: 'original' }}" alt="Gift Guide Image" class="mobile-img" width="100%" />
         {% endif %}
-        <a href="#" class="gift-guide-button gift-guide-button-mobile" style="
-          background-color: {{ block.settings.button_background_color }};
-          color: {{ block.settings.button_text_color }};
-          border-radius: {{ block.settings.button_border_radius }}px;
-          transition: all {{ block.settings.button_hover_transition_duration }}ms {{ block.settings.button_hover_transition }};
-        ">
+        <a href="{{block.settings.button_text_url}}" class="gift-guide-button gift-guide-button-mobile" style="">
           {{ block.settings.button_text }}
           {% if block.settings.show_arrow %}
             <span class="gift-guide-arrow">
