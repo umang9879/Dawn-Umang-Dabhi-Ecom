@@ -1,5 +1,9 @@
 <header class="site_heade_newr">
     <div class="header_logo">
-        
+        {% if section.settings.logo %}
+            <img src="{{ section.settings.logo | img_url: '200x' }}" alt="Logo" class="site-logo-img" />
+        {% else %}
+            {{ shop.name }}
+        {% endif %}
     </div>
 </header>
