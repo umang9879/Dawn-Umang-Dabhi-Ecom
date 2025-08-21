@@ -404,13 +404,13 @@
     text-transform: uppercase;
     overflow: hidden;
     transition: background 0.4s ease, color 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1; /* add z-index */
 }
 
-#add-to-cart svg path {
-    transition: fill 0.4s ease;
-}
-
-/* Create overlay effect from left to right */
 #add-to-cart::before {
     content: "";
     position: absolute;
@@ -419,30 +419,31 @@
     width: 100%;
     height: 100%;
     background-color: #FFF544;
-    z-index: 1;
+    z-index: 0; /* push overlay behind content */
     transition: left 0.4s ease;
 }
 
-/* Bring overlay from left to right */
 #add-to-cart:hover::before {
     left: 0;
 }
 
-/* Bring SVG and text to front and change fill */
+#add-to-cart > * {
+    position: relative;
+    z-index: 2; /* ensure content stays above overlay */
+    color: inherit; /* inherit text color */
+}
+
 #add-to-cart:hover {
     color: black;
+}
+
+#add-to-cart svg path {
+    transition: fill 0.4s ease;
 }
 
 #add-to-cart:hover svg path {
     fill: black;
 }
-
-/* Ensure content sits above the overlay */
-#add-to-cart > * {
-    position: relative;
-    z-index: 2;
-}
-
 
   .popup_image img{
     width: 120px;
