@@ -1,3 +1,352 @@
+{% style %}
+.collection_grid_container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.collection-grid {
+  margin-right: 51px;
+  margin-left: 51px;
+  margin-top: {{ section.settings.margin_top }}px;
+  margin-bottom: {{ section.settings.margin_bottom }}px;
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.collection-grid h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.collection-grid__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Desktop default */
+  gap: {{ section.settings.gap }}px;
+}
+
+.collection-grid__item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.collection-grid__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.collection-grid__item:hover img {
+  transform: scale(1.03);
+}
+
+/* "+" icon overlay */
+.collection-grid__focal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 7px;
+  color: #000000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 22px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Product Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.popup.hidden {
+  display: none;
+}
+
+.popup-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  max-width: 350px;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  cursor: pointer;
+}
+
+.popup_top_sectoin {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  gap: 10px;
+}
+
+.popup_image {
+  max-width: 120px;
+  max-height: 140px;
+}
+.popup_image img {
+  width: 120px;
+  height: 140px;
+  object-fit: cover;
+}
+
+.popup_prd_info h2 {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 120%;
+  margin: 13px 0 0;
+}
+
+.popup_prd_info p {
+  font-size: 14px;
+  line-height: 110%;
+}
+
+.popup_prd_price {
+  font-size: 16px;
+  margin: 20px 0 0;
+  font-weight: 400;
+  color: #000;
+}
+
+/* Variant Selector */
+.variant-options,
+.variant_options {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.variant-group {
+  margin: 10px 0;
+}
+
+.variant-group label {
+  font-size: 14px;
+  line-height: 130%;
+  display: block;
+  margin: 6px 0;
+  font-weight: 400;
+}
+
+.variant-option {
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+  display: flex;
+  height: 40px;
+  border: 1px solid black;
+  color: #000;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.variant-option::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: black;
+  z-index: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.variant-option:nth-child(2)::before {
+  transform: translateX(-100%);
+}
+
+.variant-option.active::before {
+  transform: translateX(0);
+}
+
+.variant-option.active {
+  color: #fff;
+  z-index: 1;
+}
+
+.variant-option .content {
+  position: relative;
+  z-index: 1;
+}
+
+.option_color {
+  display: block !important;
+  width: 7px;
+  z-index: 1;
+  border-right: 1px solid black;
+}
+
+.option_value {
+  display: flex;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  font-size: 18px;
+}
+
+.optopn_value {
+  width: 100%;
+  text-align: start;
+  margin-left: 10px;
+}
+
+.variant-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.variant-select option {
+  color: #000;
+  background-color: #fff;
+}
+.variant-select option:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* Add to Cart */
+#add-to-cart,
+.add-to-cart-button {
+  background: #000;
+  color: #fff;
+  padding: 12px 20px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+#add-to-cart {
+  margin-top: 50px;
+  margin-bottom: 15px;
+  border-radius: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .collection-grid {
+    margin-right: 16px;
+    margin-left: 16px;
+    text-align: center;
+  }
+}
+{% endstyle %}
+
+{%- comment -%}
+  Assign the selected collection from section settings
+{%- endcomment -%}
+{% assign selected_collection = collections[section.settings.collection] %}
+
+<div class="collection_grid_container">
+  <div class="collection-grid">
+
+    {%- comment -%}
+      Display the heading only if it's provided in section settings
+    {%- endcomment -%}
+    {% if section.settings.heading != blank %}
+      <h2>{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {%- comment -%}
+      Check if a valid collection is selected and has products
+    {%- endcomment -%}
+    {% if selected_collection and selected_collection.products_count > 0 %}
+
+      {%- comment -%}
+        Limit the number of products displayed to the value set in section settings
+      {%- endcomment -%}
+      {% assign limited_products = selected_collection.products | limit: section.settings.products_to_show %}
+      
+      <div class="collection-grid__items">
+        {%- comment -%}
+          Loop through each product and render a grid item
+        {%- endcomment -%}
+        {% for product in limited_products %}
+          <div class="collection-grid__item" data-handle="{{ product.handle }}">
+            
+            {%- comment -%}
+              Display product image and "+" button only if product has a featured image
+            {%- endcomment -%}
+            {% if product.featured_image %}
+              <div class="product-card">
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+                <button class="collection-grid__focal" data-product-handle="{{ product.handle }}">+</button>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+    {%- comment -%}
+      Fallback message if no products are found in the collection
+    {%- endcomment -%}
+    {% else %}
+      <p>No products found in this collection.</p>
+    {% endif %}
+  </div>
+</div>
+
+{%- comment -%}
+  Hidden popup element to display product details dynamically
+{%- endcomment -%}
+<div id="product-popup" class="popup hidden">
+  <div class="popup-content">
+    {%- comment -%}
+      Close button for the popup (X icon using SVG)
+    {%- endcomment -%}
+    <div class="close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M5.03784 4.94354L13.5231 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+        <path d="M5.03784 13.4285L13.5231 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    
+    {%- comment -%}
+      Container for dynamic product content that appears in the popup
+    {%- endcomment -%}
+    <div id="popup-body"></div>
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Collection Grid EcomExp",
@@ -75,339 +424,6 @@
   ]
 }
 {% endschema %}
-
-{% style %}
-.collection-grid {
-  margin-right: 51px;
-  margin-left: 51px;
-  margin-top: {{ section.settings.margin_top }}px;
-  margin-bottom: {{ section.settings.margin_bottom }}px;
-  padding-top: {{ section.settings.padding_top }}px;
-  padding-bottom: {{ section.settings.padding_bottom }}px;
-}
-
-.collection-grid__items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Default desktop */
-  gap: {{ section.settings.gap }}px;
-}
-
-/* Tablet: 2 products per row */
-@media screen and (max-width: 1024px) {
-  .collection-grid__items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Mobile: 2 products per row (or 1 if you want) */
-@media screen and (max-width: 640px) {
-  .collection-grid__items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-   .collection-grid
-  {
-    margin-right: 16px;
-    margin-left: 16px;
-
-        text-align: center;
-  }
-
-}
-
-.collection-grid__item {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.collection-grid__item img {
-  width: 100%;
-  aspect-ratio: 1 / 1; /* Enforce square ratio */
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.collection-grid__item:hover img {
-  transform: scale(1.03);
-}
-
-/* "+" icon overlay */
-.collection-grid__focal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    padding: 7px;
-    color: #000000;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 22px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-}
-
-/* Heading spacing */
-.collection-grid h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 600;
-}
-
-
-
-
-.product-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-}
-
-.product-popup__overlay {
-  background: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
-.product-popup__content {
-  position: relative;
-  background: white;
-  width: 90%;
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-  z-index: 10000;
-}
-
-.product-popup__close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.add-to-cart-button {
-  background: black;
-  color: white;
-  padding: 15px;
-  width: 100%;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  margin-top: 20px;
-}
-
-#popup-variant-options select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-}
-.variant-options
-{
-  display:flex;
-}
-.collection_grid_container
-{
-  max-width:1440px;
-  margin:0px auto;
-}
-{% endstyle %}
-
-
-
-<style>
-  .popup {
-    position: fixed; top:0; left:0; right:0; bottom:0;
-    background: rgba(0,0,0,0.6);
-    display:flex; align-items:center; justify-content:center;
-    z-index:9999;
-  }
-  .popup.hidden { display:none; }
-  .popup-content {
-    position: relative;
-    background: #fff;
-    padding: 20px;
-    max-width: 350px;
-    
-  }
-  .popup-info { flex:1; display:flex; flex-direction:column; }
-  .close-btn {
-     display: flex;
-    justify-content: end;
-    align-items: center;
-    cursor: pointer;
-}
-  }
-  .variant-group { margin:10px 0; }
-  .variant-group label { 
-    font-size: 14px;
-    line-height: 130%;
-    display: block;
-    margin: 6px 0px;
-    font-weight: 400;
-  }
-  .variant-option {
-    width: 50%;
-    display: flex;
-    border: 1px solid black;
-    height: 40px;
-    cursor: pointer;
-  }
-  
-  
-
-
-
-  .variant-option {
-    position: relative;
-    overflow: hidden;
-    color: #000;
-    transition: color 0.2s ease-in-out;
-}
-
-.variant-option::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    color:#fff;
-    bottom: 0;
-    width: 100%;
-    background: black;
-    z-index: 0;
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.variant-option:nth-child(2)::before {
-    transform: translateX(-100%);
-}
-
-.variant-option.active::before {
-    transform: translateX(0);
-}
-
-.variant-option.active {
-    color: #FFF;
-    z-index: 1;
-}
-
-.variant-option .content {
-    position: relative;
-    z-index: 1;
-}
-
-
-
-
-
-  #add-to-cart {
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 0;
-    margin-bottom: 15px;
-    margin-top: 50px;
-    font-size: 16px;
-    text-transform: uppercase;
-  }
-  .popup_image img{
-    width: 120px;
-    height: 140px;
-    object-fit: cover;
-  }
-  .popup_image
-  {
-    max-width: 120px;
-    max-height: 140px;
-  }
-  .popup_top_sectoin
-  {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    gap: 10px;
-  }
-  .popup_prd_info h2
-  {
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 120%;
-    letter-spacing: 0px;
-    vertical-align: middle;
-    margin: 13px 0px 0px 0px;
-  }
-  .popup_prd_price
-  {
-    font-size: 16px;
-    margin: 20px 0 0;
-    font-weight: 400;
-    color: #000;
-  }
-  .popup_prd_info p
-  {
-    font-size: 14px;
-    line-height: 110.00%;
-  }
-  .option_color
-  {
-    display: block !important;
-    width: 7px;
-    z-index: 1;
-    border-right: 1px solid black;
-  }
-  .optopn_value
-  {
-    width: 100%;
-    text-align: start;
-    margin-left: 10px;
-  }
-  .variant_options
-  {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-  .option_value
-  {
-    display: flex;
-    margin-left: 10px;
-    justify-content: center;
-    align-items: center;
-    z-index:1;
-    font-size: 18px;
-  }
-  .variant-select{
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .variant-select option{
-    color:#000;
-    background-color:#FFF;
-  }
-  .variant-select option:hover{
-    color:#FFF;
-    background-color:#000;
-  }
-  
-  
-</style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
