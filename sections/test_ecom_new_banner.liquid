@@ -1,0 +1,810 @@
+<!-- ============================= -->
+<!-- CSS: Header + Gift Guide Block -->
+<!-- ============================= -->
+{% style %}
+
+/* ----------------------------- */
+/* Generic Button Visibility     */
+/* ----------------------------- */
+.gift-guide-button-mobile {
+  display: none !important;
+}
+.gift-guide-button-desk {
+  display: block;
+}
+
+/* Hide mobile image by default */
+.mobile-img {
+  display: none;
+}
+
+/* Toggle for mobile header menu */
+.header_mobile_open {
+  display: none;
+}
+
+/* ----------------------------- */
+/* Header Styles                 */
+/* ----------------------------- */
+.header_logo img {
+  margin-top: 10px;
+}
+.header_logo {
+  margin: 22px 0px 22px 51px;
+}
+.announcement_text {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
+.site_heade_newr {
+  background: #F5F5F5;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header_button {
+  margin: 21px 50px 21px 0px;
+}
+
+
+
+/* Base button styles */
+.announcement-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px 11px 41px;
+  background: #FFF544;
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+  line-height: 20.48px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  isolation: isolate; /* create stacking context so the bg sits under text */
+  transition: color 0.35s ease;
+}
+
+/* Background fill effect from left to right */
+.announcement-button::before {
+  content: "";
+  position: absolute;
+  inset: 0 100% 0 0; /* start with zero width */
+  background: #000;
+  z-index: -1; /* keep under the content */
+  transition: inset 0.35s ease;
+}
+
+/* Make children sit above the background */
+.announcement-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Text color turns white on hover. Important to win against theme rules */
+.announcement-button:hover {
+  color: #fff !important;
+}
+
+/* Also force nested elements to inherit white where applicable */
+.announcement-button:hover * {
+  color: #fff !important;
+  fill: #fff;
+  stroke: #fff;
+}
+
+/* Expand background on hover */
+.announcement-button:hover::before {
+  inset: 0 0 0 0;
+}
+
+/* Icon swap rules if you added two SVGs: one default and one hover */
+.announcement-button svg {
+  margin-left: 18px;
+  transition: opacity 0.25s ease;
+}
+
+.announcement-button .icon-default {
+  opacity: 1;
+}
+
+.announcement-button .icon-hover {
+  position: absolute;
+  right: 20px;
+  opacity: 0;
+}
+
+.announcement-button:hover .icon-default {
+  opacity: 0;
+}
+
+.announcement-button:hover .icon-hover {
+  opacity: 1;
+}
+
+
+/* Hero background (dynamic from schema) */
+.hero_wrapper {
+  background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
+  max-width: {{ section.settings.max_width_desk }}px;
+  margin: 0 auto;
+  min-height: {{ section.settings.min_height_desk }}px;
+  background-position: center;
+}
+
+/* ----------------------------- */
+/* Gift Guide Layout             */
+/* ----------------------------- */
+.gift-guide-section {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* Position handling (left vs right) */
+.gift-guide-left .gift-guide-content { margin-left: 67px; order: 1; }
+.gift-guide-left .gift-guide-image { order: 2; }
+.gift-guide-right .gift-guide-content { margin-right: 67px; order: 2; }
+.gift-guide-right .gift-guide-image { order: 1; }
+
+.gift-guide-content {
+  max-width: 500px;
+  flex: 1;
+}
+
+/* Typography */
+.gift-guide-heading { margin: 0; }
+.gift-guide-heading p {
+  font-family: 'Jost';
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100%;
+  margin: 0 0 50px 0;
+}
+.gift-guide-description {
+  font-family: 'Jost';
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  margin: 0 0 50px 0;
+}
+
+/* CTA button */
+.gift-guide-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 23px 14px 55px;
+  gap: 29px;
+  text-decoration: none;
+  font-weight: lighter;
+  text-transform: uppercase;
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #000;  /* default black bg */
+  color: #fff;             /* default white text */
+  border-radius: 6px;
+  transition: color 0.35s ease;
+}
+/* BG animation */
+.gift-guide-button::before {
+  content: "";
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: #FFF544;  /* hover yellow bg */
+  z-index: -1;
+  transition: inset 0.35s ease;
+}
+.gift-guide-button > * {
+  position: relative;
+  z-index: 1;
+}
+.gift-guide-button:hover {
+  color: #000 !important;
+}
+.gift-guide-button:hover::before {
+  inset: 0 0 0 0;
+}
+
+/* Arrow slide animation */
+.gift-guide-arrow {
+  display: inline-flex;
+  transition: transform 0.35s ease;
+}
+.gift-guide-button:hover .gift-guide-arrow {
+  transform: translateX(4px);
+}
+.gift-guide-arrow {
+  font-size: 16px;
+}
+
+/* Sustainability banner */
+.sustainability {
+  font-family: 'Jost';
+  font-size: 16px;
+  text-align: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 10px 0;
+  background: #F5F5F5;
+}
+
+/* ----------------------------- */
+/* Tablet + Laptop Responsive    */
+/* ----------------------------- */
+@media (min-width: 768px) and (max-width: 1280px) {
+  .gift-guide-section {
+    display: block;
+    position: relative;
+  }
+  .gift-guide-left .gift-guide-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #FFF;
+    padding: 30px;
+  }
+  .gift-guide-description {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+  }
+  .gift-guide-heading p {
+    font-size: 45px;
+    margin: 0 0 30px 0;
+  }
+  .header_button { margin: 21px 21px 21px 0; }
+  .header_logo { margin: 22px 0 22px 22px; }
+  .site_heade_newr {margin: 0 auto; padding: 0px 25px; }
+  .header_logo, .header_button { margin: 0; }
+}
+
+/* ----------------------------- */
+/* Mobile Responsive Styles      */
+/* ----------------------------- */
+@media (max-width: 767px) {
+  .header_mobile_open { display: block; }
+  .site_heade_newr { display: block; width: 100%; }
+  
+  .header_logo {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px 0;
+    background: #F7F7F7;
+  }
+  .header_logo img { margin: 0 auto; }
+  
+  .site-logo-img {
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .header_button {
+    margin: 0 0 30px 0;
+    display: flex;
+  }
+  
+  .announcement-button { margin: 0 auto; }
+  .header_desk, .hide_mobile_bg { display: none; }
+  
+  /* Gift guide mobile button */
+  .gift-guide-button {
+    position: absolute;
+    bottom: 39px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  
+  /* Switch to mobile image */
+  .desktop-img { display: none; }
+  .mobile-img { display: block; }
+  
+  .gift-guide-left .gift-guide-content { margin: 0; }
+  .gift-guide-heading p {
+    font-family: 'Jost';
+    font-weight: 500;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 0 24px 0;
+  }
+  .gift-guide-section {
+    display: block;
+    margin-top: 50px;
+  }
+  .gift-guide-description {
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    margin: 0 0 12px 0;
+  }
+  .gift-guide-left .gift-guide-image { position: relative; }
+  
+  /* Show mobile button instead of desktop */
+  .gift-guide-button-mobile {
+    display: flex !important;
+    padding: 13px 20px 13px 36px;
+    gap: 20px;
+  }
+  .gift-guide-button-desk { display: none; }
+}
+
+/* ----------------------------- */
+/* Mobile Dropdown Animation     */
+/* ----------------------------- */
+.mobile_dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+/* Mobile-first: show mobile icons */
+.header_mobile_open,
+.header_mobile_close {
+  display: inline-block;
+}
+
+/* Desktop: hide mobile icons */
+@media screen and (min-width: 768px) {
+  .header_mobile_open,
+  .header_mobile_close {
+    display: none !important;
+  }
+
+  .mobile_dropdown {
+    display: none !important;
+    max-height: none !important;
+  }
+}
+
+{% for block in section.blocks %}
+    .gift-guide-button
+    {
+        background-color: {{ block.settings.button_background_color }};
+        color: {{ block.settings.button_text_color }};
+        border-radius: {{ block.settings.button_border_radius }}px;
+        transition: all {{ block.settings.button_hover_transition_duration }}ms {{ block.settings.button_hover_transition }};
+    }
+{% endfor %}
+
+{% endstyle %}
+
+{% comment %}
+  Custom Header Section with Logo, Announcement, Button, Hero, Image + Sustainability Description
+{% endcomment %}
+
+
+<header class="site_heade_newr">
+  <div class="header_logo">
+     {% if section.settings.logo %}
+        <svg class="header_mobile_open" xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none" style="margin-left: 16px;">
+          <path d="M1 6H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 1H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 11H19" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <svg class="header_mobile_close" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none" style="display: none; margin-left: 16px;">
+          <path d="M1 13.9994L13.7279 1.2715" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M1 1L13.7279 13.7279" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="Logo" class="site-logo-img" />
+      {% else %}
+        {{ shop.name }}
+      {% endif %}
+  </div>
+
+  {% if section.blocks.size > 0 %}
+    <div class="announcement_bar_new header_desk" data-autoplay="{{ section.settings.autoplay }}">
+      <div class="announcement-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'announcement' %}
+            <div class="announcementt" data-index="{{ forloop.index }}">
+              <p class="announcement_text">{{ block.settings.text }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="header_button header_desk">
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="announcement-button">
+        {{ section.settings.button_text }}
+        <svg class="icon-default" xmlns="http://www.w3.org/2000/svg" width="26" height="12" viewBox="0 0 26 12" fill="none" style="margin-left: 18px;">
+            <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"></path>
+        </svg>
+        <svg class="icon-hover" xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 18px;">
+            <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path>
+        </svg>
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Mobile dropdown menu -->
+  <div class="mobile_dropdown" style="display: none;">
+    {% if section.blocks.size > 0 %}
+      <div class="announcement_bar_new" data-autoplay="{{ section.settings.autoplay }}">
+        <div class="announcement-wrapper">
+          {% for block in section.blocks %}
+            {% if block.type == 'announcement' %}
+              <div class="announcementt" data-index="{{ forloop.index }}">
+                <p class="announcement_text">{{ block.settings.text }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="header_button">
+      {% if section.settings.button_text != blank %}
+        <a href="{{ section.settings.button_link }}" class="announcement-button">
+          {{ section.settings.button_text }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="12" viewBox="0 0 26 12" fill="none" style="margin-left: 18px;">
+            <path d="M1.22205 4.80469L0.472046 4.80469L0.472046 6.30469L1.22205 6.30469L1.22205 4.80469ZM25.7524 6.08502C26.0453 5.79213 26.0453 5.31725 25.7524 5.02436L20.9794 0.251388C20.6865 -0.0415053 20.2116 -0.0415053 19.9187 0.251388C19.6259 0.544281 19.6259 1.01916 19.9187 1.31205L24.1614 5.55469L19.9187 9.79733C19.6259 10.0902 19.6259 10.5651 19.9187 10.858C20.2116 11.1509 20.6865 11.1509 20.9794 10.858L25.7524 6.08502ZM1.22205 6.30469L25.222 6.30469L25.222 4.80469L1.22205 4.80469L1.22205 6.30469Z" fill="black"/>
+          </svg>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</header>
+
+{% comment %} Background Image {% endcomment %}
+{% if section.settings.background_image != blank %}
+  <div class="hero_wrapper {% if section.settings.hide_mobile %}hide_mobile_bg{% endif %}">
+  </div>
+{% endif %}
+
+{% comment %} Image Content & Sustainability {% endcomment %}
+{% for block in section.blocks %}
+  {% if block.type == 'image_content' %}
+    <div class="gift-guide-section gift-guide-{{ block.settings.content_position }}">
+      <div class="gift-guide-content">
+        <h2 class="gift-guide-heading">{{ block.settings.image_content_heading }}</h2>
+        <div class="gift-guide-description">{{ block.settings.image_content_description }}</div>
+        <a href="{{block.settings.button_text_url}}" class="gift-guide-button gift-guide-button-desk">
+        {{ block.settings.button_text }}
+        {% if block.settings.show_arrow %}
+            <span class="gift-guide-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none">
+                <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="currentColor"/>
+            </svg>
+            </span>
+        {% endif %}
+        </a>
+      </div>
+
+      <div class="gift-guide-image">
+        {% if block.settings.image_content_img != blank %}
+          <img src="{{ block.settings.image_content_img | img_url: 'original' }}" alt="Gift Guide Image" class="desktop-img" width="100%" />
+        {% endif %}
+        {% if block.settings.image_content_img_mobile != blank %}
+          <img src="{{ block.settings.image_content_img_mobile | img_url: 'original' }}" alt="Gift Guide Image" class="mobile-img" width="100%" />
+        {% endif %}
+        {% comment %} <a href="{{block.settings.button_text_url}}" class="gift-guide-button gift-guide-button-mobile" style="">
+          {{ block.settings.button_text }}
+          {% if block.settings.show_arrow %}
+            <span class="gift-guide-arrow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"/></svg>
+            </span>
+          {% endif %}
+        </a> {% endcomment %}
+        <a href="{{block.settings.button_text_url}}" class="gift-guide-button gift-guide-button-mobile">
+        {{ block.settings.button_text }}
+        {% if block.settings.show_arrow %}
+            <span class="gift-guide-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none">
+                <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="currentColor"/>
+            </svg>
+            </span>
+        {% endif %}
+        </a>
+        
+      </div>
+    </div>
+  {% endif %}
+
+  {% if block.type == 'sustainability_des' %}
+    <div class="sustainability">
+      {{ block.settings.Sustainability_des }}
+    </div>
+  {% endif %}
+{% endfor %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // ---------- Announcement marquee ----------
+  const marqueeHost = document.querySelector(".announcement_bar_new");
+  const autoplay = marqueeHost?.dataset.autoplay === "true";
+
+  if (autoplay) {
+    const items = document.querySelectorAll(".announcement-text");
+    if (items.length && window.Vennila?.marquee) {
+      Vennila.marquee(items, {
+        duration: 3000,
+        loop: true,
+        pauseOnHover: true
+      });
+    }
+  }
+
+  const openIcon = document.querySelector('.header_mobile_open');
+  const closeIcon = document.querySelector('.header_mobile_close');
+  const dropdown = document.querySelector('.mobile_dropdown');
+
+  function openMenu() {
+    openIcon.style.display = 'none';
+    closeIcon.style.display = 'inline-block';
+    dropdown.style.display = 'block';
+    dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+    dropdown.style.transition = 'max-height 0.3s ease-out';
+  }
+
+  function closeMenu() {
+    closeIcon.style.display = 'none';
+    openIcon.style.display = 'inline-block';
+    dropdown.style.maxHeight = '0';
+    dropdown.addEventListener('transitionend', function hideAfterSlide() {
+      dropdown.style.display = 'none';
+      dropdown.removeEventListener('transitionend', hideAfterSlide);
+    });
+  }
+
+  openIcon.addEventListener('click', openMenu);
+  closeIcon.addEventListener('click', closeMenu);
+
+  // 🛠️ Listen for window resize
+  window.addEventListener('resize', () => {
+    const isDesktop = window.innerWidth >= 767;
+    if (isDesktop) {
+      // Reset mobile menu when moving to desktop
+      dropdown.style.display = 'none';
+      dropdown.style.maxHeight = null;
+      openIcon.style.display = 'inline-block';
+      closeIcon.style.display = 'none';
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+
+  "settings": [
+    // General settings for the whole header/banner
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable announcement autoplay",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Main Button Text",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Main Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_mobile",
+      "label": "Hide Background on Mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_width_desk",
+      "label": "Max Width (Desktop px)",
+      "default": 1440,
+      "min": 1200,
+      "max": 2000,
+      "step": 10
+    },
+    {
+      "type": "range",
+      "id": "min_height_desk",
+      "label": "Min Height (Desktop px)",
+      "default": 390,
+      "min": 300,
+      "max": 600,
+      "step": 10
+    }
+  ],
+
+  "blocks": [
+    // Announcement bar block
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Announcement Text",
+          "default": "Find the ideal gift for your loved ones."
+        }
+      ]
+    },
+
+    // Image + Content block (supports separate desktop/mobile images + text + button)
+    {
+      "type": "image_content",
+      "name": "Image Content Box",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_content_img",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_content_img_mobile",
+          "label": "Mobile Image"
+        },
+
+        {
+          "type": "header",
+          "content": "Content Box Settings"
+        },
+        {
+          "type": "richtext",
+          "id": "image_content_heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "image_content_description",
+          "label": "Description Text"
+        },
+
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_text_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_arrow",
+          "label": "Show Arrow Icon",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Button Background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "label": "Button Border Radius (px)",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "default": 4
+        },
+
+        {
+          "type": "header",
+          "content": "Button Hover Effects"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_background_color",
+          "label": "Hover Background Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text_color",
+          "label": "Hover Text Color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "select",
+          "id": "button_hover_transition",
+          "label": "Hover Transition Effect",
+          "default": "ease",
+          "options": [
+            { "value": "ease", "label": "Ease" },
+            { "value": "ease-in", "label": "Ease-In" },
+            { "value": "ease-out", "label": "Ease-Out" },
+            { "value": "ease-in-out", "label": "Ease-In-Out" },
+            { "value": "linear", "label": "Linear" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "button_hover_transition_duration",
+          "label": "Transition Duration (ms)",
+          "min": 100,
+          "max": 2000,
+          "step": 100,
+          "default": 300
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content Position",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ]
+        }
+      ]
+    },
+
+    // Sustainability description block
+    {
+      "type": "sustainability_des",
+      "name": "Sustainability",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Sustainability Description"
+        },
+        {
+          "type": "text",
+          "id": "Sustainability_des",
+          "label": "Description Text"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Banner New Test EcomExperts"
+    }
+  ]
+}
+{% endschema %}
