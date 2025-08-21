@@ -228,42 +228,6 @@
 {% endstyle %}
 
 
-{% assign selected_collection = collections[section.settings.collection] %}
-
-<div class="collection_grid_container">
-<div class="collection-grid">
-  {% if section.settings.heading != blank %}
-    <h2>{{ section.settings.heading }}</h2>
-  {% endif %}
-
-  {% if selected_collection and selected_collection.products_count > 0 %}
-    {% assign limited_products = selected_collection.products | limit: section.settings.products_to_show %}
-    
-    <div class="collection-grid__items">
-      {% for product in limited_products %}
-       <div class="collection-grid__item" data-handle="{{ product.handle }}">
-          {% if product.featured_image %}
-            <div class="product-card">
-              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
-              <button class="collection-grid__focal" data-product-handle="{{ product.handle }}">+</button>
-            </div>
-          {% endif %}
-</div>
-
-      {% endfor %}
-    </div>
-  {% else %}
-    <p>No products found in this collection.</p>
-  {% endif %}
-</div>
-</div>
-
-<div id="product-popup" class="popup hidden">
-  <div class="popup-content">
-    <div class="close-btn"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5.03784 4.94354L13.5231 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/><path d="M5.03784 13.4285L13.5231 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/></svg></div>
-    <div id="popup-body"></div>
-  </div>
-</div>
 
 <style>
   .popup {
