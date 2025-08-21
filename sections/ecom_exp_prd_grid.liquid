@@ -527,15 +527,13 @@
   
   
 </style>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const popup = document.getElementById("product-popup");
   const popupBody = document.getElementById("popup-body");
   const closeBtn = document.querySelector(".close-btn");
 
-  if (!popup || !popupBody) return;
-
-  // Format money
   function formatMoney(cents) {
     return (cents / 100).toLocaleString("en-US", {
       style: "currency",
@@ -545,16 +543,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Open popup on product click
   document.querySelectorAll(".collection-grid__focal").forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      e.preventDefault();
+    btn.addEventListener("click", function() {
       const handle = this.dataset.productHandle;
-      if (!handle) return;
 
       fetch(`/products/${handle}.js`)
         .then(res => res.json())
         .then(product => {
           // Build options HTML
           let optionsHtml = "";
+
           product.options.forEach((opt, i) => {
             let values = [...new Set(product.variants.map(v => v.options[i]))];
             let firstVal = product.variants[0].options[i];
@@ -562,7 +559,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (opt.name.toLowerCase() === "size") {
               // Dropdown for Size
               let options = values.map(val =>
-                `<option value="${val}" ${val === firstVal ? "selected" : ""}>${val}</option>`
+                `<option value="${val}" ${val === firstVal ? 'selected' : ''}>${val}</option>`
               ).join("");
 
               optionsHtml += `
@@ -576,8 +573,8 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
               // Buttons for other options
               let buttons = values.map(val =>
-                `<div class="variant-option ${val === firstVal ? "active" : ""}" data-index="${i}" data-value="${val}">
-                  <div class="option_color" style="background-color:${val.toLowerCase()};"></div>
+                `<div class="variant-option ${val === firstVal ? 'active' : ''}" data-index="${i}" data-value="${val}">
+                  <div class="option_color" style="background-color: ${val.toLowerCase()};"></div>
                   <div class="option_value">${val}</div>
                 </div>`
               ).join("");
@@ -593,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
           // Inject popup content
           popupBody.innerHTML = `
-            <div class="popup_top_section">
+            <div class="popup_top_sectoin">
               <div class="popup_image">
                 <img src="${product.featured_image}" alt="${product.title}">
               </div>
@@ -605,18 +602,13 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             <div class="popup-info">
               <div class="variant_options">${optionsHtml}</div>
-              <input type="number" id="qty" value="1" min="1" style="width:60px;margin:10px 0;" />
-              <button id="add-to-cart">Add to Cart 
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 10px;">
-                  <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path>
-                </svg>
-              </button>
+              <button id="add-to-cart">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 28px;"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path></svg></button>
             </div>
           `;
 
           popup.classList.remove("hidden");
 
-          // Handle option buttons
+          // Variant option button selection
           popupBody.querySelectorAll(".variant-option").forEach(el => {
             el.addEventListener("click", function() {
               let parent = this.closest(".variant-options");
@@ -625,45 +617,48 @@ document.addEventListener("DOMContentLoaded", function() {
             });
           });
 
-          // Add to cart
-          const addBtn = popupBody.querySelector("#add-to-cart");
-          if (addBtn) {
-            addBtn.addEventListener("click", function() {
-              let selectedOptions = [];
-              product.options.forEach((opt, i) => {
-                let optionValue;
-                if (opt.name.toLowerCase() === "size") {
-                  let select = popupBody.querySelector(`#variant-select-${i}`);
-                  optionValue = select ? select.value : null;
-                } else {
-                  let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
-                  optionValue = activeBtn ? activeBtn.dataset.value : null;
-                }
-                selectedOptions.push(optionValue);
-              });
+          // Add to cart handler
+          document.getElementById("add-to-cart").addEventListener("click", function() {
+            let selectedOptions = [];
 
-              if (selectedOptions.includes(null)) {
-                alert("Please select all options");
-                return;
+            product.options.forEach((opt, i) => {
+              let optionValue;
+
+              if (opt.name.toLowerCase() === "size") {
+                let select = popupBody.querySelector(`#variant-select-${i}`);
+                optionValue = select ? select.value : null;
+              } else {
+                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
+                optionValue = activeBtn ? activeBtn.dataset.value : null;
               }
 
-              let variant = product.variants.find(v =>
-                JSON.stringify(v.options) === JSON.stringify(selectedOptions)
-              );
+              selectedOptions.push(optionValue);
+            });
 
-              if (!variant) {
-                alert("Selected variant combination not available.");
-                return;
-              }
+            // Check for missing selections
+            if (selectedOptions.includes(null)) {
+              alert("Please select all options");
+              return;
+            }
 
-              const qtyInput = document.getElementById("qty");
-              const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+            // Find matching variant
+            let variant = product.variants.find(v =>
+              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
+            );
 
-              fetch("/cart/add.js", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id: variant.id, quantity: qty })
-              })
+            if (!variant) {
+              alert("Selected variant combination not available.");
+              return;
+            }
+
+            const qtyInput = document.getElementById("qty");
+            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+
+            fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: variant.id, quantity: qty })
+            })
               .then(res => res.json())
               .then(data => {
                 alert(`${product.title} added to cart!`);
@@ -673,20 +668,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error(err);
                 alert("Error adding to cart.");
               });
-            });
-          }
-        })
-        .catch(err => console.error("Product fetch error:", err));
+          });
+        });
     });
   });
 
   // Close popup
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
-  }
+  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
   window.addEventListener("click", e => {
     if (e.target === popup) popup.classList.add("hidden");
   });
 });
 </script>
-
