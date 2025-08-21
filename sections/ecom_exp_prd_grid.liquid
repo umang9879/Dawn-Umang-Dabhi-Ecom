@@ -1,0 +1,635 @@
+{% style %}
+/* ================================
+   COLLECTION GRID STYLES
+   ================================ */
+.collection_grid_container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.collection-grid {
+  margin: {{ section.settings.margin_top }}px 51px {{ section.settings.margin_bottom }}px 51px;
+  padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px 0;
+}
+
+.collection-grid__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default desktop: 3 products */
+  gap: {{ section.settings.gap }}px;
+}
+
+/* Tablet: 2 products per row */
+@media screen and (max-width: 1024px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 2 products per row */
+@media screen and (max-width: 640px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .collection-grid {
+    margin: 0 16px;
+    text-align: center;
+  }
+}
+
+.collection-grid h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.collection-grid__item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.collection-grid__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Square image ratio */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.collection-grid__item:hover img {
+  transform: scale(1.03);
+}
+
+/* "+" overlay button on product card */
+.collection-grid__focal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 22px;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ================================
+   POPUP STYLES
+   ================================ */
+.popup {
+  position: fixed;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup.hidden { 
+  display: none; 
+}
+
+.popup-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  max-width: 350px;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  cursor: pointer;
+}
+
+.popup-info { 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+/* Variant groups inside popup */
+.variant-group { margin: 10px 0; }
+.variant-group label { 
+  font-size: 14px;
+  line-height: 130%;
+  margin: 6px 0;
+  font-weight: 400;
+  display: block;
+}
+
+/* Variant option buttons */
+.variant-option {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border: 1px solid #000;
+  position: relative;
+  overflow: hidden;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.variant-option::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 0;
+}
+
+.variant-option:nth-child(2)::before {
+  transform: translateX(-100%);
+}
+
+.variant-option.active::before {
+  transform: translateX(0);
+}
+
+.variant-option.active {
+  color: #fff;
+  z-index: 1;
+}
+
+.variant-option .content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dropdown for variants */
+.variant-select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.variant-select option {
+  color: #000;
+  background-color: #fff;
+}
+
+.variant-select option:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+/* ================================
+   ADD TO CART BUTTON
+   ================================ */
+#add-to-cart,
+.add-to-cart-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  margin: 20px 0 15px;
+}
+
+
+/* ================================
+   POPUP CONTENT LAYOUT
+   ================================ */
+.popup_top_sectoin {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.popup_image {
+  max-width: 120px;
+  max-height: 140px;
+}
+
+.popup_image img {
+  width: 120px;
+  height: 140px;
+  object-fit: cover;
+}
+
+.popup_prd_info h2 {
+  margin: 13px 0 0;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 120%;
+}
+
+.popup_prd_price {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+}
+
+.popup_prd_info p {
+  font-size: 14px;
+  line-height: 110%;
+}
+
+/* Variant layout helpers */
+.variant-options { display: flex; }
+.variant_options { display: flex; flex-direction: column-reverse; }
+.option_color {
+  display: block !important;
+  width: 7px;
+  border-right: 1px solid #000;
+}
+.option_value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size: 18px;
+}
+.optopn_value { /* note: typo kept if it matches schema */
+  width: 100%;
+  text-align: start;
+  margin-left: 10px;
+}
+{% endstyle %}
+
+
+{%- comment -%}
+  Section: Collection Grid with Product Popup
+  Description:
+  - Displays products from a selected collection in a grid format
+  - Includes a popup that loads product details dynamically
+  - Optimized for clarity, maintainability, and hackathon presentation
+{%- endcomment -%}
+
+{%- assign selected_collection = collections[section.settings.collection] -%}
+
+<div class="collection_grid_container">
+  <div class="collection-grid">
+    
+    {%- comment -%} Section Heading (Optional) {%- endcomment -%}
+    {% if section.settings.heading != blank %}
+      <h2 class="collection-grid__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {%- comment -%} Render Products if Collection Exists and is not Empty {%- endcomment -%}
+    {% if selected_collection and selected_collection.products_count > 0 %}
+      {%- assign limited_products = selected_collection.products | limit: section.settings.products_to_show -%}
+      
+      <div class="collection-grid__items">
+        {%- for product in limited_products -%}
+          <div class="collection-grid__item" data-handle="{{ product.handle }}">
+            
+            {%- comment -%} Product Card {%- endcomment -%}
+            {% if product.featured_image %}
+              <div class="product-card">
+                <img 
+                  src="{{ product.featured_image | image_url: width: 600 }}" 
+                  alt="{{ product.title | escape }}" 
+                  class="product-card__image"
+                >
+                
+                {%- comment -%} Popup Trigger Button {%- endcomment -%}
+                <button 
+                  class="collection-grid__focal" 
+                  data-product-handle="{{ product.handle }}" 
+                  aria-label="View details for {{ product.title | escape }}">
+                  +
+                </button>
+              </div>
+            {% endif %}
+
+          </div>
+        {%- endfor -%}
+      </div>
+    {% else %}
+      <p class="collection-grid__empty">No products found in this collection.</p>
+    {% endif %}
+  </div>
+</div>
+
+{%- comment -%} Product Popup Modal (Initially Hidden) {%- endcomment -%}
+<div id="product-popup" class="popup hidden">
+  <div class="popup-content">
+    
+    {%- comment -%} Close Button {%- endcomment -%}
+    <button class="close-btn" aria-label="Close popup">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M5.03784 4.94354L13.5231 13.4288" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+        <path d="M5.03784 13.4285L13.5231 4.94325" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    {%- comment -%} Dynamic Product Details Will Load Here {%- endcomment -%}
+    <div id="popup-body"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  /* ==========================================================
+     DOM ELEMENTS
+     ========================================================== */
+  const popup = document.getElementById("product-popup");
+  const popupBody = document.getElementById("popup-body");
+  const closeBtn = document.querySelector(".close-btn");
+
+  /* ==========================================================
+     HELPER: Format Money
+     - Converts Shopify cents into localized currency
+     ========================================================== */
+  function formatMoney(cents) {
+    return (cents / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+  }
+
+  /* ==========================================================
+     EVENT: Open Popup when "+" button clicked
+     ========================================================== */
+  document.querySelectorAll(".collection-grid__focal").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const handle = this.dataset.productHandle;
+
+      // Fetch product JSON via Shopify's product endpoint
+      fetch(`/products/${handle}.js`)
+        .then(res => res.json())
+        .then(product => {
+          
+          /* ------------------------------------------
+             BUILD VARIANT OPTIONS
+             - Size = Dropdown
+             - Other Options = Button swatches
+          ------------------------------------------ */
+          let optionsHtml = "";
+          product.options.forEach((opt, i) => {
+            let values = [...new Set(product.variants.map(v => v.options[i]))];
+            let firstVal = product.variants[0].options[i];
+
+            if (opt.name.toLowerCase() === "size") {
+              // Render dropdown for "Size"
+              let options = values.map(val =>
+                `<option value="${val}" ${val === firstVal ? "selected" : ""}>${val}</option>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label for="variant-select-${i}">${opt.name}</label>
+                  <select class="variant-select" data-index="${i}" id="variant-select-${i}">
+                    ${options}
+                  </select>
+                </div>
+              `;
+            } else {
+              // Render buttons for other options (e.g. Color)
+              let buttons = values.map(val =>
+                `<div class="variant-option ${val === firstVal ? "active" : ""}" 
+                      data-index="${i}" 
+                      data-value="${val}">
+                  <div class="option_color" style="background-color:${val.toLowerCase()};"></div>
+                  <div class="option_value">${val}</div>
+                </div>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label>${opt.name}</label>
+                  <div class="variant-options">${buttons}</div>
+                </div>
+              `;
+            }
+          });
+
+          /* ------------------------------------------
+             BUILD POPUP CONTENT
+          ------------------------------------------ */
+          popupBody.innerHTML = `
+            <div class="popup_top_sectoin">
+              <div class="popup_image">
+                <img src="${product.featured_image}" alt="${product.title}">
+              </div>
+              <div class="popup_prd_info">
+                <h2>${product.title}</h2>
+                <div class="popup_prd_price">${formatMoney(product.price)}</div>
+                <p class="popup_prd_des">${product.description}</p>
+              </div>
+            </div>
+            <div class="popup-info">
+              <div class="variant_options">${optionsHtml}</div>
+              <button id="add-to-cart" aria-label="Add ${product.title} to cart">
+                Add to Cart
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left:28px;">
+                  <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path>
+                </svg>
+              </button>
+            </div>
+          `;
+
+          popup.classList.remove("hidden");
+
+          /* ------------------------------------------
+             VARIANT OPTION TOGGLE
+          ------------------------------------------ */
+          popupBody.querySelectorAll(".variant-option").forEach(el => {
+            el.addEventListener("click", function() {
+              let parent = this.closest(".variant-options");
+              parent.querySelectorAll(".variant-option").forEach(o => o.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+
+          /* ------------------------------------------
+             ADD TO CART HANDLER
+          ------------------------------------------ */
+          document.getElementById("add-to-cart").addEventListener("click", function() {
+            let selectedOptions = [];
+
+            product.options.forEach((opt, i) => {
+              let optionValue;
+
+              if (opt.name.toLowerCase() === "size") {
+                let select = popupBody.querySelector(`#variant-select-${i}`);
+                optionValue = select ? select.value : null;
+              } else {
+                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
+                optionValue = activeBtn ? activeBtn.dataset.value : null;
+              }
+
+              selectedOptions.push(optionValue);
+            });
+
+            // Check for missing selections
+            if (selectedOptions.includes(null)) {
+              alert("⚠️ Please select all options before adding to cart.");
+              return;
+            }
+
+            // Find matching variant
+            let variant = product.variants.find(v =>
+              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
+            );
+
+            if (!variant) {
+              alert("⚠️ Selected variant combination not available.");
+              return;
+            }
+
+            // Quantity (defaults to 1)
+            const qtyInput = document.getElementById("qty");
+            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+
+            // Add to cart via Shopify AJAX
+            fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: variant.id, quantity: qty })
+            })
+              .then(res => res.json())
+              .then(() => {
+                alert(`✅ ${product.title} added to cart!`);
+                popup.classList.add("hidden");
+              })
+              .catch(err => {
+                console.error(err);
+                alert("❌ Error adding to cart. Please try again.");
+              });
+          });
+        })
+        .catch(err => {
+          console.error("Error fetching product JSON", err);
+          alert("⚠️ Could not load product details.");
+        });
+    });
+  });
+
+  /* ==========================================================
+     CLOSE POPUP
+     - via "X" button or clicking outside content
+     ========================================================== */
+  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
+  window.addEventListener("click", e => {
+    if (e.target === popup) popup.classList.add("hidden");
+  });
+
+  // (Optional) Escape key to close
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape") popup.classList.add("hidden");
+  });
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "Collection Grid EcomExp",
+
+  "settings": [
+    /* ================================
+       CONTENT SETTINGS
+       ================================ */
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Tisso Vision in the Wild"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection to Display"
+    },
+
+    /* ================================
+       DISPLAY OPTIONS
+       ================================ */
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Number of Products to Show",
+      "min": 2,
+      "max": 50,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap Between Products (px)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+
+    /* ================================
+       SPACING CONTROLS
+       ================================ */
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom Padding (px)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin (px)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom Margin (px)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 0
+    }
+  ],
+
+  /* ================================
+     SECTION PRESETS
+     ================================ */
+  "presets": [
+    {
+      "name": "Collection Grid EcomExp",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
