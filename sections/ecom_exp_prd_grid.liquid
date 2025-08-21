@@ -1,276 +1,3 @@
-{% style %}
-.collection_grid_container {
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-.collection-grid {
-  margin-right: 51px;
-  margin-left: 51px;
-  margin-top: {{ section.settings.margin_top }}px;
-  margin-bottom: {{ section.settings.margin_bottom }}px;
-  padding-top: {{ section.settings.padding_top }}px;
-  padding-bottom: {{ section.settings.padding_bottom }}px;
-}
-
-.collection-grid h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: 600;
-}
-
-.collection-grid__items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Desktop default */
-  gap: {{ section.settings.gap }}px;
-}
-
-.collection-grid__item {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.collection-grid__item img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.collection-grid__item:hover img {
-  transform: scale(1.03);
-}
-
-/* "+" icon overlay */
-.collection-grid__focal {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  padding: 7px;
-  color: #000000;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 22px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-/* Product Popup */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.popup.hidden {
-  display: none;
-}
-
-.popup-content {
-  position: relative;
-  background: #fff;
-  padding: 20px;
-  max-width: 350px;
-}
-
-.close-btn {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  cursor: pointer;
-}
-
-.popup_top_sectoin {
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  gap: 10px;
-}
-
-.popup_image {
-  max-width: 120px;
-  max-height: 140px;
-}
-.popup_image img {
-  width: 120px;
-  height: 140px;
-  object-fit: cover;
-}
-
-.popup_prd_info h2 {
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 120%;
-  margin: 13px 0 0;
-}
-
-.popup_prd_info p {
-  font-size: 14px;
-  line-height: 110%;
-}
-
-.popup_prd_price {
-  font-size: 16px;
-  margin: 20px 0 0;
-  font-weight: 400;
-  color: #000;
-}
-
-/* Variant Selector */
-.variant-options,
-.variant_options {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.variant-group {
-  margin: 10px 0;
-}
-
-.variant-group label {
-  font-size: 14px;
-  line-height: 130%;
-  display: block;
-  margin: 6px 0;
-  font-weight: 400;
-}
-
-.variant-option {
-  position: relative;
-  overflow: hidden;
-  width: 50%;
-  display: flex;
-  height: 40px;
-  border: 1px solid black;
-  color: #000;
-  transition: color 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.variant-option::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  background: black;
-  z-index: 0;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.variant-option:nth-child(2)::before {
-  transform: translateX(-100%);
-}
-
-.variant-option.active::before {
-  transform: translateX(0);
-}
-
-.variant-option.active {
-  color: #fff;
-  z-index: 1;
-}
-
-.variant-option .content {
-  position: relative;
-  z-index: 1;
-}
-
-.option_color {
-  display: block !important;
-  width: 7px;
-  z-index: 1;
-  border-right: 1px solid black;
-}
-
-.option_value {
-  display: flex;
-  margin-left: 10px;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  font-size: 18px;
-}
-
-.optopn_value {
-  width: 100%;
-  text-align: start;
-  margin-left: 10px;
-}
-
-.variant-select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.variant-select option {
-  color: #000;
-  background-color: #fff;
-}
-.variant-select option:hover {
-  color: #fff;
-  background-color: #000;
-}
-
-/* Add to Cart */
-#add-to-cart,
-.add-to-cart-button {
-  background: #000;
-  color: #fff;
-  padding: 12px 20px;
-  cursor: pointer;
-  border: none;
-  width: 100%;
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 20px;
-  text-transform: uppercase;
-}
-#add-to-cart {
-  margin-top: 50px;
-  margin-bottom: 15px;
-  border-radius: 0;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-  .collection-grid__items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .collection-grid__items {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .collection-grid {
-    margin-right: 16px;
-    margin-left: 16px;
-    text-align: center;
-  }
-}
-{% endstyle %}
-
 {%- comment -%}
   Assign the selected collection from section settings
 {%- endcomment -%}
@@ -346,175 +73,6 @@
     <div id="popup-body"></div>
   </div>
 </div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  // Get popup and its close elements
-  const popup = document.getElementById("product-popup");
-  const popupBody = document.getElementById("popup-body");
-  const closeBtn = document.querySelector(".close-btn");
-
-  // Utility function to format price (Shopify prices are in cents)
-  function formatMoney(cents) {
-    return (cents / 100).toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD"
-    });
-  }
-
-  // Loop through all focal buttons (+) to attach click event listeners
-  document.querySelectorAll(".collection-grid__focal").forEach(btn => {
-    btn.addEventListener("click", function() {
-      const handle = this.dataset.productHandle; // Get product handle from button
-
-      // Fetch product JSON data from Shopify
-      fetch(`/products/${handle}.js`)
-        .then(res => res.json())
-        .then(product => {
-
-          // Build variant options HTML dynamically
-          let optionsHtml = "";
-
-          product.options.forEach((opt, i) => {
-            // Get unique values for each option
-            let values = [...new Set(product.variants.map(v => v.options[i]))];
-            let firstVal = product.variants[0].options[i];
-
-            // Handle "Size" as a dropdown
-            if (opt.name.toLowerCase() === "size") {
-              let options = values.map(val =>
-                `<option value="${val}" ${val === firstVal ? 'selected' : ''}>${val}</option>`
-              ).join("");
-
-              optionsHtml += `
-                <div class="variant-group variant-group_${opt.name}">
-                  <label for="variant-select-${i}">${opt.name}</label>
-                  <select class="variant-select" data-index="${i}" id="variant-select-${i}">
-                    ${options}
-                  </select>
-                </div>
-              `;
-
-            } else {
-              // All other options rendered as colored buttons
-              let buttons = values.map(val =>
-                `<div class="variant-option ${val === firstVal ? 'active' : ''}" data-index="${i}" data-value="${val}">
-                  <div class="option_color" style="background-color: ${val.toLowerCase()};"></div>
-                  <div class="option_value">${val}</div>
-                </div>`
-              ).join("");
-
-              optionsHtml += `
-                <div class="variant-group variant-group_${opt.name}">
-                  <label>${opt.name}</label>
-                  <div class="variant-options">${buttons}</div>
-                </div>
-              `;
-            }
-          });
-
-          // Inject the HTML into popup
-          popupBody.innerHTML = `
-            <div class="popup_top_sectoin">
-              <div class="popup_image">
-                <img src="${product.featured_image}" alt="${product.title}">
-              </div>
-              <div class="popup_prd_info">
-                <h2>${product.title}</h2>
-                <div class="popup_prd_price">${formatMoney(product.price)}</div>
-                <p class="popup_prd_des">${product.description}</p>
-              </div>
-            </div>
-            <div class="popup-info">
-              <div class="variant_options">${optionsHtml}</div>
-              <button id="add-to-cart">
-                Add to Cart 
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 28px;">
-                  <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path>
-                </svg>
-              </button>
-            </div>
-          `;
-
-          // Show the popup
-          popup.classList.remove("hidden");
-
-          // Handle button-based variant selection (e.g., color)
-          popupBody.querySelectorAll(".variant-option").forEach(el => {
-            el.addEventListener("click", function() {
-              let parent = this.closest(".variant-options");
-              parent.querySelectorAll(".variant-option").forEach(o => o.classList.remove("active"));
-              this.classList.add("active");
-            });
-          });
-
-          // Handle Add to Cart button
-          document.getElementById("add-to-cart").addEventListener("click", function() {
-            let selectedOptions = [];
-
-            // Loop through each option to gather selected values
-            product.options.forEach((opt, i) => {
-              let optionValue;
-
-              if (opt.name.toLowerCase() === "size") {
-                let select = popupBody.querySelector(`#variant-select-${i}`);
-                optionValue = select ? select.value : null;
-              } else {
-                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
-                optionValue = activeBtn ? activeBtn.dataset.value : null;
-              }
-
-              selectedOptions.push(optionValue);
-            });
-
-            // If any selection is missing, prevent submission
-            if (selectedOptions.includes(null)) {
-              alert("Please select all options");
-              return;
-            }
-
-            // Match selected option set with a valid variant
-            let variant = product.variants.find(v =>
-              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
-            );
-
-            if (!variant) {
-              alert("Selected variant combination not available.");
-              return;
-            }
-
-            // Optionally get quantity (default = 1)
-            const qtyInput = document.getElementById("qty");
-            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
-
-            // Send POST request to add to cart
-            fetch("/cart/add.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ id: variant.id, quantity: qty })
-            })
-              .then(res => res.json())
-              .then(data => {
-                alert(`${product.title} added to cart!`);
-                popup.classList.add("hidden"); // Close popup
-              })
-              .catch(err => {
-                console.error(err);
-                alert("Error adding to cart.");
-              });
-          });
-        });
-    });
-  });
-
-  // Close popup on close button click
-  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
-
-  // Close popup if background overlay is clicked
-  window.addEventListener("click", e => {
-    if (e.target === popup) popup.classList.add("hidden");
-  });
-});
-</script>
 
 {% schema %}
 {
@@ -593,3 +151,489 @@ document.addEventListener("DOMContentLoaded", function() {
   ]
 }
 {% endschema %}
+
+{% style %}
+.collection-grid {
+  margin-right: 51px;
+  margin-left: 51px;
+  margin-top: {{ section.settings.margin_top }}px;
+  margin-bottom: {{ section.settings.margin_bottom }}px;
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.collection-grid__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default desktop */
+  gap: {{ section.settings.gap }}px;
+}
+
+/* Tablet: 2 products per row */
+@media screen and (max-width: 1024px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 2 products per row (or 1 if you want) */
+@media screen and (max-width: 640px) {
+  .collection-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+   .collection-grid
+  {
+    margin-right: 16px;
+    margin-left: 16px;
+
+        text-align: center;
+  }
+
+}
+
+.collection-grid__item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.collection-grid__item img {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Enforce square ratio */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.collection-grid__item:hover img {
+  transform: scale(1.03);
+}
+
+/* "+" icon overlay */
+.collection-grid__focal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 7px;
+    color: #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Heading spacing */
+.collection-grid h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+
+
+
+.product-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.product-popup__overlay {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.product-popup__content {
+  position: relative;
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  z-index: 10000;
+}
+
+.product-popup__close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.add-to-cart-button {
+  background: black;
+  color: white;
+  padding: 15px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-top: 20px;
+}
+
+#popup-variant-options select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+.variant-options
+{
+  display:flex;
+}
+.collection_grid_container
+{
+  max-width:1440px;
+  margin:0px auto;
+}
+{% endstyle %}
+
+
+
+<style>
+  .popup {
+    position: fixed; top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    display:flex; align-items:center; justify-content:center;
+    z-index:9999;
+  }
+  .popup.hidden { display:none; }
+  .popup-content {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    max-width: 350px;
+    
+  }
+  .popup-info { flex:1; display:flex; flex-direction:column; }
+  .close-btn {
+     display: flex;
+    justify-content: end;
+    align-items: center;
+    cursor: pointer;
+}
+  }
+  .variant-group { margin:10px 0; }
+  .variant-group label { 
+    font-size: 14px;
+    line-height: 130%;
+    display: block;
+    margin: 6px 0px;
+    font-weight: 400;
+  }
+  .variant-option {
+    width: 50%;
+    display: flex;
+    border: 1px solid black;
+    height: 40px;
+    cursor: pointer;
+  }
+  
+  
+
+
+
+  .variant-option {
+    position: relative;
+    overflow: hidden;
+    color: #000;
+    transition: color 0.2s ease-in-out;
+}
+
+.variant-option::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    color:#fff;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    z-index: 0;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.variant-option:nth-child(2)::before {
+    transform: translateX(-100%);
+}
+
+.variant-option.active::before {
+    transform: translateX(0);
+}
+
+.variant-option.active {
+    color: #FFF;
+    z-index: 1;
+}
+
+.variant-option .content {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+
+  #add-to-cart {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 0;
+    margin-bottom: 15px;
+    margin-top: 50px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  .popup_image img{
+    width: 120px;
+    height: 140px;
+    object-fit: cover;
+  }
+  .popup_image
+  {
+    max-width: 120px;
+    max-height: 140px;
+  }
+  .popup_top_sectoin
+  {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+  }
+  .popup_prd_info h2
+  {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    margin: 13px 0px 0px 0px;
+  }
+  .popup_prd_price
+  {
+    font-size: 16px;
+    margin: 20px 0 0;
+    font-weight: 400;
+    color: #000;
+  }
+  .popup_prd_info p
+  {
+    font-size: 14px;
+    line-height: 110.00%;
+  }
+  .option_color
+  {
+    display: block !important;
+    width: 7px;
+    z-index: 1;
+    border-right: 1px solid black;
+  }
+  .optopn_value
+  {
+    width: 100%;
+    text-align: start;
+    margin-left: 10px;
+  }
+  .variant_options
+  {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .option_value
+  {
+    display: flex;
+    margin-left: 10px;
+    justify-content: center;
+    align-items: center;
+    z-index:1;
+    font-size: 18px;
+  }
+  .variant-select{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .variant-select option{
+    color:#000;
+    background-color:#FFF;
+  }
+  .variant-select option:hover{
+    color:#FFF;
+    background-color:#000;
+  }
+  
+  
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const popup = document.getElementById("product-popup");
+  const popupBody = document.getElementById("popup-body");
+  const closeBtn = document.querySelector(".close-btn");
+
+  function formatMoney(cents) {
+    return (cents / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+  }
+
+  // Open popup on product click
+  document.querySelectorAll(".collection-grid__focal").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const handle = this.dataset.productHandle;
+
+      fetch(`/products/${handle}.js`)
+        .then(res => res.json())
+        .then(product => {
+          // Build options HTML
+          let optionsHtml = "";
+
+          product.options.forEach((opt, i) => {
+            let values = [...new Set(product.variants.map(v => v.options[i]))];
+            let firstVal = product.variants[0].options[i];
+
+            if (opt.name.toLowerCase() === "size") {
+              // Dropdown for Size
+              let options = values.map(val =>
+                `<option value="${val}" ${val === firstVal ? 'selected' : ''}>${val}</option>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label for="variant-select-${i}">${opt.name}</label>
+                  <select class="variant-select" data-index="${i}" id="variant-select-${i}">
+                    ${options}
+                  </select>
+                </div>
+              `;
+            } else {
+              // Buttons for other options
+              let buttons = values.map(val =>
+                `<div class="variant-option ${val === firstVal ? 'active' : ''}" data-index="${i}" data-value="${val}">
+                  <div class="option_color" style="background-color: ${val.toLowerCase()};"></div>
+                  <div class="option_value">${val}</div>
+                </div>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label>${opt.name}</label>
+                  <div class="variant-options">${buttons}</div>
+                </div>
+              `;
+            }
+          });
+
+          // Inject popup content
+          popupBody.innerHTML = `
+            <div class="popup_top_sectoin">
+              <div class="popup_image">
+                <img src="${product.featured_image}" alt="${product.title}">
+              </div>
+              <div class="popup_prd_info">
+                <h2>${product.title}</h2>
+                <div class="popup_prd_price">${formatMoney(product.price)}</div>
+                <p class="popup_prd_des">${product.description}</p>
+              </div>
+            </div>
+            <div class="popup-info">
+              <div class="variant_options">${optionsHtml}</div>
+              <button id="add-to-cart">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 28px;"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path></svg></button>
+            </div>
+          `;
+
+          popup.classList.remove("hidden");
+
+          // Variant option button selection
+          popupBody.querySelectorAll(".variant-option").forEach(el => {
+            el.addEventListener("click", function() {
+              let parent = this.closest(".variant-options");
+              parent.querySelectorAll(".variant-option").forEach(o => o.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+
+          // Add to cart handler
+          document.getElementById("add-to-cart").addEventListener("click", function() {
+            let selectedOptions = [];
+
+            product.options.forEach((opt, i) => {
+              let optionValue;
+
+              if (opt.name.toLowerCase() === "size") {
+                let select = popupBody.querySelector(`#variant-select-${i}`);
+                optionValue = select ? select.value : null;
+              } else {
+                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
+                optionValue = activeBtn ? activeBtn.dataset.value : null;
+              }
+
+              selectedOptions.push(optionValue);
+            });
+
+            // Check for missing selections
+            if (selectedOptions.includes(null)) {
+              alert("Please select all options");
+              return;
+            }
+
+            // Find matching variant
+            let variant = product.variants.find(v =>
+              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
+            );
+
+            if (!variant) {
+              alert("Selected variant combination not available.");
+              return;
+            }
+
+            const qtyInput = document.getElementById("qty");
+            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+
+            fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: variant.id, quantity: qty })
+            })
+              .then(res => res.json())
+              .then(data => {
+                alert(`${product.title} added to cart!`);
+                popup.classList.add("hidden");
+              })
+              .catch(err => {
+                console.error(err);
+                alert("Error adding to cart.");
+              });
+          });
+        });
+    });
+  });
+
+  // Close popup
+  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
+  window.addEventListener("click", e => {
+    if (e.target === popup) popup.classList.add("hidden");
+  });
+});
+</script>
