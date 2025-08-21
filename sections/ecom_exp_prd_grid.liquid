@@ -346,6 +346,175 @@
     <div id="popup-body"></div>
   </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get popup and its close elements
+  const popup = document.getElementById("product-popup");
+  const popupBody = document.getElementById("popup-body");
+  const closeBtn = document.querySelector(".close-btn");
+
+  // Utility function to format price (Shopify prices are in cents)
+  function formatMoney(cents) {
+    return (cents / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD"
+    });
+  }
+
+  // Loop through all focal buttons (+) to attach click event listeners
+  document.querySelectorAll(".collection-grid__focal").forEach(btn => {
+    btn.addEventListener("click", function() {
+      const handle = this.dataset.productHandle; // Get product handle from button
+
+      // Fetch product JSON data from Shopify
+      fetch(`/products/${handle}.js`)
+        .then(res => res.json())
+        .then(product => {
+
+          // Build variant options HTML dynamically
+          let optionsHtml = "";
+
+          product.options.forEach((opt, i) => {
+            // Get unique values for each option
+            let values = [...new Set(product.variants.map(v => v.options[i]))];
+            let firstVal = product.variants[0].options[i];
+
+            // Handle "Size" as a dropdown
+            if (opt.name.toLowerCase() === "size") {
+              let options = values.map(val =>
+                `<option value="${val}" ${val === firstVal ? 'selected' : ''}>${val}</option>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label for="variant-select-${i}">${opt.name}</label>
+                  <select class="variant-select" data-index="${i}" id="variant-select-${i}">
+                    ${options}
+                  </select>
+                </div>
+              `;
+
+            } else {
+              // All other options rendered as colored buttons
+              let buttons = values.map(val =>
+                `<div class="variant-option ${val === firstVal ? 'active' : ''}" data-index="${i}" data-value="${val}">
+                  <div class="option_color" style="background-color: ${val.toLowerCase()};"></div>
+                  <div class="option_value">${val}</div>
+                </div>`
+              ).join("");
+
+              optionsHtml += `
+                <div class="variant-group variant-group_${opt.name}">
+                  <label>${opt.name}</label>
+                  <div class="variant-options">${buttons}</div>
+                </div>
+              `;
+            }
+          });
+
+          // Inject the HTML into popup
+          popupBody.innerHTML = `
+            <div class="popup_top_sectoin">
+              <div class="popup_image">
+                <img src="${product.featured_image}" alt="${product.title}">
+              </div>
+              <div class="popup_prd_info">
+                <h2>${product.title}</h2>
+                <div class="popup_prd_price">${formatMoney(product.price)}</div>
+                <p class="popup_prd_des">${product.description}</p>
+              </div>
+            </div>
+            <div class="popup-info">
+              <div class="variant_options">${optionsHtml}</div>
+              <button id="add-to-cart">
+                Add to Cart 
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 28px;">
+                  <path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path>
+                </svg>
+              </button>
+            </div>
+          `;
+
+          // Show the popup
+          popup.classList.remove("hidden");
+
+          // Handle button-based variant selection (e.g., color)
+          popupBody.querySelectorAll(".variant-option").forEach(el => {
+            el.addEventListener("click", function() {
+              let parent = this.closest(".variant-options");
+              parent.querySelectorAll(".variant-option").forEach(o => o.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+
+          // Handle Add to Cart button
+          document.getElementById("add-to-cart").addEventListener("click", function() {
+            let selectedOptions = [];
+
+            // Loop through each option to gather selected values
+            product.options.forEach((opt, i) => {
+              let optionValue;
+
+              if (opt.name.toLowerCase() === "size") {
+                let select = popupBody.querySelector(`#variant-select-${i}`);
+                optionValue = select ? select.value : null;
+              } else {
+                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
+                optionValue = activeBtn ? activeBtn.dataset.value : null;
+              }
+
+              selectedOptions.push(optionValue);
+            });
+
+            // If any selection is missing, prevent submission
+            if (selectedOptions.includes(null)) {
+              alert("Please select all options");
+              return;
+            }
+
+            // Match selected option set with a valid variant
+            let variant = product.variants.find(v =>
+              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
+            );
+
+            if (!variant) {
+              alert("Selected variant combination not available.");
+              return;
+            }
+
+            // Optionally get quantity (default = 1)
+            const qtyInput = document.getElementById("qty");
+            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+
+            // Send POST request to add to cart
+            fetch("/cart/add.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ id: variant.id, quantity: qty })
+            })
+              .then(res => res.json())
+              .then(data => {
+                alert(`${product.title} added to cart!`);
+                popup.classList.add("hidden"); // Close popup
+              })
+              .catch(err => {
+                console.error(err);
+                alert("Error adding to cart.");
+              });
+          });
+        });
+    });
+  });
+
+  // Close popup on close button click
+  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
+
+  // Close popup if background overlay is clicked
+  window.addEventListener("click", e => {
+    if (e.target === popup) popup.classList.add("hidden");
+  });
+});
+</script>
 
 {% schema %}
 {
@@ -424,156 +593,3 @@
   ]
 }
 {% endschema %}
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const popup = document.getElementById("product-popup");
-  const popupBody = document.getElementById("popup-body");
-  const closeBtn = document.querySelector(".close-btn");
-
-  function formatMoney(cents) {
-    return (cents / 100).toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD"
-    });
-  }
-
-  // Open popup on product click
-  document.querySelectorAll(".collection-grid__focal").forEach(btn => {
-    btn.addEventListener("click", function() {
-      const handle = this.dataset.productHandle;
-
-      fetch(`/products/${handle}.js`)
-        .then(res => res.json())
-        .then(product => {
-          // Build options HTML
-          let optionsHtml = "";
-
-          product.options.forEach((opt, i) => {
-            let values = [...new Set(product.variants.map(v => v.options[i]))];
-            let firstVal = product.variants[0].options[i];
-
-            if (opt.name.toLowerCase() === "size") {
-              // Dropdown for Size
-              let options = values.map(val =>
-                `<option value="${val}" ${val === firstVal ? 'selected' : ''}>${val}</option>`
-              ).join("");
-
-              optionsHtml += `
-                <div class="variant-group variant-group_${opt.name}">
-                  <label for="variant-select-${i}">${opt.name}</label>
-                  <select class="variant-select" data-index="${i}" id="variant-select-${i}">
-                    ${options}
-                  </select>
-                </div>
-              `;
-            } else {
-              // Buttons for other options
-              let buttons = values.map(val =>
-                `<div class="variant-option ${val === firstVal ? 'active' : ''}" data-index="${i}" data-value="${val}">
-                  <div class="option_color" style="background-color: ${val.toLowerCase()};"></div>
-                  <div class="option_value">${val}</div>
-                </div>`
-              ).join("");
-
-              optionsHtml += `
-                <div class="variant-group variant-group_${opt.name}">
-                  <label>${opt.name}</label>
-                  <div class="variant-options">${buttons}</div>
-                </div>
-              `;
-            }
-          });
-
-          // Inject popup content
-          popupBody.innerHTML = `
-            <div class="popup_top_sectoin">
-              <div class="popup_image">
-                <img src="${product.featured_image}" alt="${product.title}">
-              </div>
-              <div class="popup_prd_info">
-                <h2>${product.title}</h2>
-                <div class="popup_prd_price">${formatMoney(product.price)}</div>
-                <p class="popup_prd_des">${product.description}</p>
-              </div>
-            </div>
-            <div class="popup-info">
-              <div class="variant_options">${optionsHtml}</div>
-              <button id="add-to-cart">Add to Cart <svg xmlns="http://www.w3.org/2000/svg" width="28" height="13" viewBox="0 0 28 13" fill="none" style="margin-left: 28px;"><path d="M1.11108 5.74396L0.361084 5.74396L0.361084 7.24396L1.11108 7.24396L1.11108 5.74396ZM27.1487 7.02429C27.4416 6.7314 27.4416 6.25652 27.1487 5.96363L22.3757 1.19066C22.0828 0.897765 21.6079 0.897765 21.315 1.19066C21.0221 1.48355 21.0221 1.95843 21.315 2.25132L25.5577 6.49396L21.315 10.7366C21.0221 11.0295 21.0221 11.5044 21.315 11.7973C21.6079 12.0902 22.0828 12.0902 22.3757 11.7973L27.1487 7.02429ZM1.11108 7.24396L26.6183 7.24396L26.6183 5.74396L1.11108 5.74396L1.11108 7.24396Z" fill="white"></path></svg></button>
-            </div>
-          `;
-
-          popup.classList.remove("hidden");
-
-          // Variant option button selection
-          popupBody.querySelectorAll(".variant-option").forEach(el => {
-            el.addEventListener("click", function() {
-              let parent = this.closest(".variant-options");
-              parent.querySelectorAll(".variant-option").forEach(o => o.classList.remove("active"));
-              this.classList.add("active");
-            });
-          });
-
-          // Add to cart handler
-          document.getElementById("add-to-cart").addEventListener("click", function() {
-            let selectedOptions = [];
-
-            product.options.forEach((opt, i) => {
-              let optionValue;
-
-              if (opt.name.toLowerCase() === "size") {
-                let select = popupBody.querySelector(`#variant-select-${i}`);
-                optionValue = select ? select.value : null;
-              } else {
-                let activeBtn = popupBody.querySelector(`.variant-option[data-index="${i}"].active`);
-                optionValue = activeBtn ? activeBtn.dataset.value : null;
-              }
-
-              selectedOptions.push(optionValue);
-            });
-
-            // Check for missing selections
-            if (selectedOptions.includes(null)) {
-              alert("Please select all options");
-              return;
-            }
-
-            // Find matching variant
-            let variant = product.variants.find(v =>
-              JSON.stringify(v.options) === JSON.stringify(selectedOptions)
-            );
-
-            if (!variant) {
-              alert("Selected variant combination not available.");
-              return;
-            }
-
-            const qtyInput = document.getElementById("qty");
-            const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
-
-            fetch("/cart/add.js", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ id: variant.id, quantity: qty })
-            })
-              .then(res => res.json())
-              .then(data => {
-                alert(`${product.title} added to cart!`);
-                popup.classList.add("hidden");
-              })
-              .catch(err => {
-                console.error(err);
-                alert("Error adding to cart.");
-              });
-          });
-        });
-    });
-  });
-
-  // Close popup
-  closeBtn.addEventListener("click", () => popup.classList.add("hidden"));
-  window.addEventListener("click", e => {
-    if (e.target === popup) popup.classList.add("hidden");
-  });
-});
-</script>
