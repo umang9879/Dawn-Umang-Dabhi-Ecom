@@ -130,11 +130,26 @@
         "max_width_desk": 1440,
         "min_height_desk": 390
       }
+    },
+    "ecom_exp_prd_grid_hXhNP4": {
+      "type": "ecom_exp_prd_grid",
+      "name": "Collection Grid EcomExp",
+      "settings": {
+        "heading": "Tisso Vision in the Wild",
+        "collection": "new-collection-_-ecomexperts",
+        "products_to_show": 6,
+        "gap": 16,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "test_ecom_new_banner_tT3JfF"
+    "test_ecom_new_banner_tT3JfF",
+    "ecom_exp_prd_grid_hXhNP4"
   ]
 }
