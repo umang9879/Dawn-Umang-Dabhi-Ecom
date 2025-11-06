@@ -144,12 +144,23 @@
         "margin_top": 0,
         "margin_bottom": 0
       }
+    },
+    "logo_marquee_3cWX8e": {
+      "type": "logo-marquee",
+      "name": "Logo Marquee Infinite Loop",
+      "settings": {
+        "bg_color": "#F5F5F5",
+        "padding_y": 75,
+        "blocks_gap": 32,
+        "speed": 30
+      }
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "test_ecom_new_banner_tT3JfF",
-    "ecom_exp_prd_grid_hXhNP4"
+    "ecom_exp_prd_grid_hXhNP4",
+    "logo_marquee_3cWX8e"
   ]
 }
