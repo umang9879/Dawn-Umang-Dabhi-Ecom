@@ -161,11 +161,53 @@
           "settings": {
             "image": "shopify://shop_images/red-plaid-shirt_925x_70e9e5a8-8fc5-4d60-9a9a-cc2e0dd57cc9.jpg"
           }
+        },
+        "logo_qCqHQw": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/young-man-in-bright-fashion_925x_b3b7ebd6-c91f-496a-a516-45403497ea25.jpg"
+          }
+        },
+        "logo_tWyehJ": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/city-woman-fashion_925x_2x_e91139c3-68ff-49da-98c9-5a56a049fb30.jpg"
+          }
+        },
+        "logo_HfkeFU": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/womens-red-t-shirt_925x_5cbc9e3a-3e59-4707-aa55-d1483ba0349a.jpg"
+          }
+        },
+        "logo_P9j4AC": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg"
+          }
+        },
+        "logo_WHBdPx": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/smiling-woman-poses_925x_d4c2de74-74a9-4ace-9b9c-7cabd5d9b71d.jpg"
+          }
+        },
+        "logo_63YbXC": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/woman-outside-brownstone_925x_e294dd41-e6c3-4e3c-b89d-752a01026a87.jpg"
+          }
         }
       },
       "block_order": [
         "logo_ttWigR",
-        "logo_G6Ke7D"
+        "logo_G6Ke7D",
+        "logo_qCqHQw",
+        "logo_tWyehJ",
+        "logo_HfkeFU",
+        "logo_P9j4AC",
+        "logo_WHBdPx",
+        "logo_63YbXC"
       ],
       "name": "Logo Marquee Infinite Loop",
       "settings": {
