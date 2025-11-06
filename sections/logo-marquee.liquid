@@ -54,9 +54,11 @@
 
     #logo-marquee-{{ section.id }} .logo-marquee-track {
       display: flex;
+      flex-wrap: nowrap;
       min-width: 100%;
       gap: {{section.settings.blocks_gap | append: "px"}};
       animation: marquee-{{ section.id }} {{ section.settings.speed | append:"s" }} linear infinite;
+      will-change: transform;
     }
 
     #logo-marquee-{{ section.id }} .logo-item {
