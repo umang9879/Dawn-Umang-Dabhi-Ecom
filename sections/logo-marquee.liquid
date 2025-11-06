@@ -1,0 +1,119 @@
+{% comment %}
+  Section: Logo Marquee Infinite Scroll
+  Description: Displays an infinitely looping row of logos with adjustable settings.
+{% endcomment %}
+
+<section id="logo-marquee-{{ section.id }}" class="logo-marquee-section">
+  <div class="logo-marquee-wrapper">
+    <div class="logo-marquee-track">
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          <div class="logo-item">
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              height="96"
+              width="auto"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+      <!-- Duplicate images for seamless infinite scroll -->
+      {% for block in section.blocks %}
+        {% if block.settings.image != blank %}
+          <div class="logo-item">
+            <img
+              src="{{ block.settings.image | image_url: width: 400 }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              height="96"
+              width="auto"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    #logo-marquee-{{ section.id }} {
+      width: 100%;
+      background-color: #F5F5F5;
+      padding: 72px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-marquee-wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .logo-marquee-track {
+      display: flex;
+      gap: 32px;
+      animation: marquee-{{ section.id }} 30s linear infinite;
+    }
+
+    .logo-item {
+      flex: 0 0 auto;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-item img {
+      height: 96px;
+      width: auto;
+      object-fit: contain;
+      background: transparent;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    @keyframes marquee-{{ section.id }} {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Optional: pause on hover */
+    #logo-marquee-{{ section.id }}:hover .logo-marquee-track {
+      animation-play-state: paused;
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Logo Marquee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Logo Marquee Infinite Loop",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
