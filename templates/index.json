@@ -152,30 +152,35 @@
       "blocks": {
         "logo_G6Ke7D": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/red-plaid-shirt_925x_70e9e5a8-8fc5-4d60-9a9a-cc2e0dd57cc9.jpg"
           }
         },
         "logo_qCqHQw": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/young-man-in-bright-fashion_925x_b3b7ebd6-c91f-496a-a516-45403497ea25.jpg"
           }
         },
         "logo_tWyehJ": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/city-woman-fashion_925x_2x_e91139c3-68ff-49da-98c9-5a56a049fb30.jpg"
           }
         },
         "logo_HfkeFU": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/womens-red-t-shirt_925x_5cbc9e3a-3e59-4707-aa55-d1483ba0349a.jpg"
           }
         },
         "logo_P9j4AC": {
           "type": "logo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg"
           }
