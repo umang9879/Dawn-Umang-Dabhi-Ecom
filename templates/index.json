@@ -147,6 +147,17 @@
     },
     "logo_marquee_3cWX8e": {
       "type": "logo-marquee",
+      "blocks": {
+        "logo_ttWigR": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Group_1000007777_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_ttWigR"
+      ],
       "name": "Logo Marquee Infinite Loop",
       "settings": {
         "bg_color": "#F5F5F5",
