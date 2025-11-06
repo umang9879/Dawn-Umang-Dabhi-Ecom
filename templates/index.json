@@ -155,10 +155,17 @@
           "settings": {
             "image": "shopify://shop_images/Group_1000007777_1.png"
           }
+        },
+        "logo_G6Ke7D": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/red-plaid-shirt_925x_70e9e5a8-8fc5-4d60-9a9a-cc2e0dd57cc9.jpg"
+          }
         }
       },
       "block_order": [
-        "logo_ttWigR"
+        "logo_ttWigR",
+        "logo_G6Ke7D"
       ],
       "name": "Logo Marquee Infinite Loop",
       "settings": {
