@@ -92,6 +92,25 @@
       animation-play-state: paused;
     }
   </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const marquee = document.querySelector("#logo-marquee-{{ section.id }} .logo-marquee-track");
+        const wrapper = document.querySelector("#logo-marquee-{{ section.id }} .logo-marquee-wrapper");
+
+        if (marquee && wrapper) {
+        const marqueeWidth = marquee.scrollWidth / 2; // because it's duplicated
+        const wrapperWidth = wrapper.offsetWidth;
+
+        // If total logos width is less than container width
+        if (marqueeWidth <= wrapperWidth) {
+            marquee.style.justifyContent = "center";
+            marquee.style.animation = "none";
+        }
+        }
+    });
+  </script>
+
 </section>
 
 {% schema %}
