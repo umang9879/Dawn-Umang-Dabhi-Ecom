@@ -39,26 +39,26 @@
   <style>
     #logo-marquee-{{ section.id }} {
       width: 100%;
-      background-color: #F5F5F5;
-      padding: 72px 0;
+      background-color: {{section.settings.bg_color}};
+      padding-block: {{ section.settings.padding_y | append: "px" }};
       overflow: hidden;
       position: relative;
     }
 
-    .logo-marquee-wrapper {
+    #logo-marquee-{{ section.id }} .logo-marquee-wrapper {
       display: flex;
       align-items: center;
       width: 100%;
       overflow: hidden;
     }
 
-    .logo-marquee-track {
+    #logo-marquee-{{ section.id }} .logo-marquee-track {
       display: flex;
-      gap: 32px;
-      animation: marquee-{{ section.id }} 30s linear infinite;
+      gap: {{section.settings.blocks_gap | append: "px"}};
+      animation: marquee-{{ section.id }} {{ section.settings.speed | append:"s" }} linear infinite;
     }
 
-    .logo-item {
+    #logo-marquee-{{ section.id }} .logo-item {
       flex: 0 0 auto;
       height: 96px;
       display: flex;
@@ -66,7 +66,7 @@
       justify-content: center;
     }
 
-    .logo-item img {
+    #logo-marquee-{{ section.id }} .logo-item img {
       height: 96px;
       width: auto;
       object-fit: contain;
@@ -94,7 +94,41 @@
 {% schema %}
 {
   "name": "Logo Marquee",
-  "settings": [],
+  "settings": [
+    {
+        "type":"color",
+        "label": "Background Color",
+        "id": "bg_color",
+        "default": "#F5F5F5"
+    },
+    {
+        "type": "range",
+        "label": "Padding Y",
+        "id": "padding_y",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "default": 75
+    },
+    {
+        "type": "range",
+        "label": "Gap Between Blocks",
+        "id": "blocks_gap",
+        "min": 0,
+        "max": 100,
+        "unit": "px",
+        "default": 32
+    },
+    {
+        "type": "range",
+        "label": "Speed",
+        "id": "speed",
+        "min": 1,
+        "max": 100,
+        "unit": "s",
+        "default": 30
+    },
+  ],
   "blocks": [
     {
       "type": "logo",
