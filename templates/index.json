@@ -150,12 +150,6 @@
     "logo_marquee_3cWX8e": {
       "type": "logo-marquee",
       "blocks": {
-        "logo_ttWigR": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/Group_1000007777_1.png"
-          }
-        },
         "logo_G6Ke7D": {
           "type": "logo",
           "settings": {
@@ -200,7 +194,6 @@
         }
       },
       "block_order": [
-        "logo_ttWigR",
         "logo_G6Ke7D",
         "logo_qCqHQw",
         "logo_tWyehJ",
