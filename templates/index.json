@@ -163,7 +163,7 @@
       "name": "Logo Marquee Infinite Loop",
       "settings": {
         "bg_color": "#f5f5f5",
-        "padding_y": 75,
+        "padding_y": 72,
         "blocks_gap": 32,
         "speed": 5
       }
