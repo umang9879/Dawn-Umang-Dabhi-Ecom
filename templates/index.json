@@ -231,6 +231,54 @@
             "custom_title": "Collection"
           }
         },
+        "card_7beCK6": {
+          "type": "card",
+          "settings": {
+            "collection": "frontpage",
+            "use_custom_image": true,
+            "custom_image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg",
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "card_rCx9wc": {
+          "type": "card",
+          "settings": {
+            "collection": "frontpage",
+            "use_custom_image": true,
+            "custom_image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg",
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "card_hxcmC7": {
+          "type": "card",
+          "settings": {
+            "collection": "frontpage",
+            "use_custom_image": true,
+            "custom_image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg",
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "card_6Ef6Tm": {
+          "type": "card",
+          "settings": {
+            "collection": "frontpage",
+            "use_custom_image": true,
+            "custom_image": "shopify://shop_images/menswear-blue-zip-up-jacket_925x_9485125f-511d-44b9-9968-7d2687f19fd2.jpg",
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
         "card_CaWGPG": {
           "type": "card",
           "settings": {
@@ -266,6 +314,10 @@
       "block_order": [
         "title_cagQX8",
         "card_cNHA7n",
+        "card_7beCK6",
+        "card_rCx9wc",
+        "card_hxcmC7",
+        "card_6Ef6Tm",
         "card_CaWGPG",
         "card_qbeDf8",
         "navigation_YR4eRQ"
