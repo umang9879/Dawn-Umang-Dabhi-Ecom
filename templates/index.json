@@ -237,7 +237,7 @@
             "collection": "new-collection-_-ecomexperts",
             "use_custom_image": true,
             "custom_image": "shopify://shop_images/casual-fashion-woman_925x_56b56608-f207-45c1-b677-bb5aa26c1c7a.jpg",
-            "layout": "layout2",
+            "layout": "layout1",
             "card_padding": 24,
             "custom_cta_label": "Find out",
             "custom_title": "Collection"
