@@ -209,6 +209,95 @@
         "blocks_gap": 32,
         "speed": 15
       }
+    },
+    "feature_collections_gMELK8": {
+      "type": "feature-collections",
+      "blocks": {
+        "title_cagQX8": {
+          "type": "title",
+          "settings": {
+            "title_text": "SHOP BY FINISH",
+            "text_align_desktop": "center",
+            "text_align_mobile": "center",
+            "text_transform": "uppercase",
+            "text_color": "#30309F",
+            "title_size_desktop": 32,
+            "title_size_mobile": 24
+          }
+        },
+        "card_cNHA7n": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "use_custom_image": false,
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "card_CaWGPG": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "use_custom_image": false,
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "card_qbeDf8": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "use_custom_image": false,
+            "layout": "layout1",
+            "card_padding": 24,
+            "custom_cta_label": "Find out",
+            "custom_title": "Collection"
+          }
+        },
+        "navigation_YR4eRQ": {
+          "type": "navigation",
+          "settings": {
+            "nav_alignment": "center",
+            "nav_gap_desktop": 40,
+            "nav_gap_mobile": 8,
+            "link_style": "outlined",
+            "link_label": "FIND",
+            "link_url": "",
+            "hide_nav_on_mobile": true,
+            "active_arrow_color": "#30309F",
+            "nav_disabled_opacity": 0.5
+          }
+        }
+      },
+      "block_order": [
+        "title_cagQX8",
+        "card_cNHA7n",
+        "card_CaWGPG",
+        "card_qbeDf8",
+        "navigation_YR4eRQ"
+      ],
+      "name": "CST Collections Slider",
+      "settings": {
+        "accessibility_label": "Collections carousel",
+        "bg_color": "#F5F5F5",
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_left_desktop": 64,
+        "padding_right_desktop": 64,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56,
+        "padding_left_mobile": 16,
+        "padding_right_mobile": 16,
+        "gap_desktop": 56,
+        "gap_mobile": 40,
+        "slides_gap": 8,
+        "show_heading_if_no_block": false,
+        "fallback_heading": "Doors For Every Home"
+      }
     }
   },
   "order": [
@@ -216,6 +305,7 @@
     "featured_collection",
     "test_ecom_new_banner_tT3JfF",
     "ecom_exp_prd_grid_hXhNP4",
-    "logo_marquee_3cWX8e"
+    "logo_marquee_3cWX8e",
+    "feature_collections_gMELK8"
   ]
 }
