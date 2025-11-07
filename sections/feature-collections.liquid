@@ -17,6 +17,8 @@
     #section-{{ section.id }} {
       background-color: {{ section.settings.bg_color }};
       padding: {{ section.settings.padding_top_desktop }}px {{ section.settings.padding_right_desktop }}px {{ section.settings.padding_bottom_desktop }}px {{ section.settings.padding_left_desktop }}px;
+      width: 100%;
+      overflow: hidden;
     }
     @media (max-width: 767px) {
       #section-{{ section.id }} {
