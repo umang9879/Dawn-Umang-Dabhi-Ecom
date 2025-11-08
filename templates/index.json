@@ -255,7 +255,7 @@
       "name": "CST Collections Slider",
       "settings": {
         "bg_color": "#f5f5f5",
-        "title_text": "Doors for every home",
+        "title_text": "Shop by finish",
         "title_case": "uppercase",
         "title_color": "#30309f",
         "title_alignment": "center",
@@ -274,7 +274,7 @@
         "nav_color": "#30309f",
         "nav_btn_label": "FIND THE PERFECT DOOR",
         "nav_btn_link": "shopify://collections",
-        "nav_btn_type": "outline"
+        "nav_btn_type": "fill"
       }
     },
     "feature_collections_NT4g8C": {
