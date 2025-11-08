@@ -26,6 +26,11 @@
     color: {{ section.settings.title_color }};
     text-align: {{ section.settings.title_alignment }};
   }
+  #{{ section_id }} .cst-navigation-container {
+    display: flex;
+    width: 100%;
+    justify-content: {{ section.settings.nav_alignment }};
+  }
 {% endstyle %}
 
 <section id="{{ section_id }}" class="cst-section">
