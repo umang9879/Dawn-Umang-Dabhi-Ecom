@@ -263,7 +263,10 @@
           "frontpage",
           "new-collection-_-ecomexperts",
           "door-collections",
-          "test-collection-1"
+          "test-collection-1",
+          "door-collections-copy-copy",
+          "door-collections-copy",
+          "door-collections-copy-copy-1"
         ],
         "card_type": "small",
         "slider_gap": 48,
