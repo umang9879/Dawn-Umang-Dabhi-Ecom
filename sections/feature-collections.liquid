@@ -312,6 +312,7 @@
         new Swiper(swiperEl, {
           slidesPerView: "auto",
           spaceBetween: {{ section.settings.slider_gap }},
+          centerInsufficientSlides: true,
           navigation: {
             nextEl: "#{{ section_id }} .cst-slider-next-btn",
             prevEl: "#{{ section_id }} .cst-slider-prev-btn",
