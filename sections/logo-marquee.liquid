@@ -83,16 +83,17 @@
           loop: true,
           centeredSlides: true,
           centerInsufficientSlides: true,
-          speed: 3000,
           allowTouchMove: false,
-          autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-          },
+          speed: 8000, // slower continuous scroll
           freeMode: {
             enabled: true,
             momentum: false,
           },
+          autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+          },
+          loopedSlides: 10, // prevents gap flicker
         });
       }
     });
