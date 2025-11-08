@@ -7,7 +7,11 @@
 {% endcomment %}
 
 <section id="{{ section.id }}" class="cst-section">
-
+  <div class="cst-container">
+    {% if section.settings.title_text != blank %}
+      <div class="cst-title">{{ section.settings.title_text }}</div>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}
@@ -56,9 +60,47 @@
       "label": "Text alignment",
       "id": "title_alignment",
       "default": "center"
-    }
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "collection_list",
+      "label": "Select collections",
+      "id": "slider_collections",
+    },
+    {
+      "type": "select",
+      "id": "card_type",
+      "label": "Card type",
+      "options": [
+        { "value": "big", "label": "Big" },
+        { "value": "small", "label": "Small" }
+      ],
+      "default": "big"
+    },
+    {
+      "type": "range",
+      "id": "slider_gap",
+      "label": "Gap - desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "slider_gap_mobile",
+      "label": "Gap - mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
   ],
-  "blocks": [],
   "presets": [
     {
       "name": "CST Collection Slider"
