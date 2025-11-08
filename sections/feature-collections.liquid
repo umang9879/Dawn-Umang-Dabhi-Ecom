@@ -18,7 +18,21 @@
     {% if section.settings.slider_collections.size > 0 %}
       <div class="cst-slider-container">
         <div class="cst-slider-{{ section_id }}">
-          
+          <div class="cst-slider-wrapper">
+            {% for collection in section.settings.slider_collections %}
+              <div class="cst-slide">
+                {% if section.settings.card_type == "big" %}
+                  <div class="cst-card">
+                    
+                  </div>
+                {% else %}
+                  <div class="cst-card-small">
+
+                  </div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
     {% endif %}
@@ -90,6 +104,18 @@
         { "value": "small", "label": "Small" }
       ],
       "default": "big"
+    },
+    {
+      "type": "number",
+      "id": "slider_px",
+      "label": "Padding X - desktop",
+      "default": 64
+    },
+    {
+      "type": "number",
+      "id": "slider_px_mobile",
+      "label": "Padding X - mobile",
+      "default": 64
     },
     {
       "type": "range",
