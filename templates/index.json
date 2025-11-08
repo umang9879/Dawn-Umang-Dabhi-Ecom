@@ -223,7 +223,7 @@
           "frontpage",
           "new-collection-_-ecomexperts"
         ],
-        "card_type": "big",
+        "card_type": "small",
         "slider_px": 64,
         "slider_px_mobile": 0,
         "slider_gap": 8,
