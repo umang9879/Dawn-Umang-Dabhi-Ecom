@@ -230,7 +230,7 @@
 
       if (swiperEl) {
         new Swiper(swiperEl, {
-          slidesPerView: {{ section.settings.slider_slides_per_view }},
+          slidesPerView: "auto",
           spaceBetween: {{ section.settings.slider_gap }},
           navigation: {
             nextEl: "#{{ section_id }} .cst-slider-next-btn",
@@ -238,11 +238,11 @@
           },
           breakpoints: {
             0: {
-              slidesPerView: {{ section.settings.slider_slides_per_view_mobile }},
+              slidesPerView: "auto",
               spaceBetween: {{ section.settings.slider_gap_mobile }},
             },
             768: {
-              slidesPerView: {{ section.settings.slider_slides_per_view }},
+              slidesPerView: "auto",
               spaceBetween: {{ section.settings.slider_gap }},
             },
           },
