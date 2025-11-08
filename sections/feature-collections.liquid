@@ -113,6 +113,9 @@
     inset: 0;
     background: linear-gradient(to bottom, transparent, #00000000);
   }
+  #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big .cst-card-info {
+    z-index: 1;
+  }
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big .cst-card-link {
     text-decoration: none;
     display: flex;
@@ -121,8 +124,13 @@
     padding-inline: 32px;
     height: 56px;
     background-color: #FFFFFF1A;
-    text-wrap: nowrap;
+    color: #fff;
+    border: 1px solid #fff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 15px;
     font-weight: 700;
     line-height: 18px;
@@ -156,7 +164,7 @@
                     class="cst-card-img"
                   />
                   <div class="cst-card-info">
-                    <a class="cst-card-link">{{ collection.title }}</a>
+                    <a href="{{ collection.url }}" class="cst-card-link">{{ collection.title }}</a>
                   </div>
                 </div>
               </div>
