@@ -173,9 +173,6 @@
     border: 1px solid #fff;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: 15px;
     font-weight: 700;
     line-height: 18px;
@@ -183,6 +180,11 @@
     letter-spacing: 5%;
     transition: all 0.4s;
     box-sizing: border-box;
+  }
+  #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big .cst-card-link span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* small card type */
