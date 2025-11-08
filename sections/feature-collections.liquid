@@ -15,6 +15,15 @@
     gap: 56px;
     padding-block: 96px;
   }
+  #{{ section_id }} .cst-title {
+    display: block;
+    width: 100%;
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: {{ section.settings.title_case }};
+    color: {{ section.settings.title_color }};
+    text-align: {{ section.settings.title_alignment }};
+  }
 {% endstyle %}
 
 <section id="{{ section_id }}" class="cst-section">
