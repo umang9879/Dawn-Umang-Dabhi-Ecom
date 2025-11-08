@@ -51,7 +51,11 @@
             </svg>
           </button>
         {% endif %}
-        
+        {% if section.settings.nav_btn_label != blank %}
+          <a href="{{ section.settings.nav_btn_link | default:"#" }}" class="cst-link-btn cst-link-btn-{{ section.settings.nav_btn_type }}">
+            {{ section.settings.nav_btn_label }}
+          </a>
+        {% endif %}
         {% if section.settings.slider_collections.size > 0 %}
           <button class="cst-slider-btn cst-slider-next-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="16" viewBox="0 0 25 16" fill="none">
