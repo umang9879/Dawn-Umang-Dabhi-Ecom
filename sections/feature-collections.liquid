@@ -31,6 +31,11 @@
     width: 100%;
     justify-content: {{ section.settings.nav_alignment }};
   }
+  #{{ section_id }} .cst-navigation {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
 {% endstyle %}
 
 <section id="{{ section_id }}" class="cst-section">
