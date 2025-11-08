@@ -187,11 +187,12 @@
 
     /* Navigation Style */
 
-    {% unless section.settings.arrow_show_mobile %}
-      #{{ section_id }} .cst-slider-btn {
-        display: none;
-      }
-    {% endunless %}
+    #{{ section_id }} .cst-navigations {
+      width: 100%;
+    }
+    #{{ section_id }} .cst-slider-btn {
+      display: none;
+    }
   }
 {% endstyle %}
 
@@ -399,12 +400,6 @@
       "label": "Color",
       "id": "nav_color",
       "default": "#30309F"
-    },
-    {
-      "type": "checkbox",
-      "id": "arrow_show_mobile",
-      "label": "Show arrow on mobile",
-      "default": true
     },
     {
       "type": "text",
