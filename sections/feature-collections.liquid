@@ -189,6 +189,7 @@
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-small {
     display: flex;
     flex-direction: column;
+    gap: 16px;
     width: 96px;
     justify-content: flex-start;
   }
@@ -197,6 +198,15 @@
     width: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+  }
+  #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-small .cst-card-link {
+    text-decoration: none;
+    color: #212133;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0%;
+    text-align: center;
   }
 
   @media(max-width: 768px) {
