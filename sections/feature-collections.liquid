@@ -184,6 +184,14 @@
     #{{ section_id }} .cst-slider-container {
       padding-inline: {{ section.settings.slider_px_mobile | append: "px" }};
     }
+
+    /* Navigation Style */
+
+    {% unless section.settings.arrow_show_mobile %}
+      #{{ section_id }} .cst-slider-btn {
+        display: none;
+      }
+    {% endunless %}
   }
 {% endstyle %}
 
