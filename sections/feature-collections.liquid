@@ -236,16 +236,6 @@
             nextEl: "#{{ section_id }} .cst-slider-next-btn",
             prevEl: "#{{ section_id }} .cst-slider-prev-btn",
           },
-          breakpoints: {
-            0: {
-              slidesPerView: "auto",
-              spaceBetween: {{ section.settings.slider_gap_mobile }},
-            },
-            768: {
-              slidesPerView: "auto",
-              spaceBetween: {{ section.settings.slider_gap }},
-            },
-          },
         });
       }
     });
