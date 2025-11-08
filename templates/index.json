@@ -225,7 +225,7 @@
         ],
         "card_type": "big",
         "slider_slides_per_view": 5,
-        "slider_slides_per_view_mobile": 1,
+        "slider_slides_per_view_mobile": 2,
         "slider_px": 64,
         "slider_px_mobile": 64,
         "slider_gap": 8,
