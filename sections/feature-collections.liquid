@@ -8,44 +8,61 @@
 
 <section id="section-{{ section.id }}" class="cst-section" aria-label="{{ section.settings.accessibility_label }}">
 
-  {% schema %}
-  {
-    "name": "CST Collections Slider",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Section Title"
-      },
-      {
-        "type": "text",
-        "label": "Text",
-        "id": "title_text"
-      },
-      {
-        "type": "select",
-        "label": "Text Case",
-        "id": "title_case",
-        "options": [
-          { "value": "none", "label": "None" },
-          { "value": "capitalize", "label": "Capitalize" },
-          { "value": "uppercase", "label": "Uppercase" },
-          { "value": "lowercase", "label": "Lowercase" }
-        ],
-        "default": "uppercase"
-      },
-      {
-        "type": "color",
-        "label": "Color",
-        "id": "title_color",
-        "default": "#30309F"
-      }
-    ],
-    "blocks": [],
-    "presets": [
-      {
-        "name": "CST Collection Slider"
-      }
-    ]
-  }
-  {% endschema %}
 </section>
+
+{% schema %}
+{
+  "name": "CST Collections Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "bg_color",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "text",
+      "label": "Text",
+      "id": "title_text"
+    },
+    {
+      "type": "select",
+      "label": "Text Case",
+      "id": "title_case",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "capitalize", "label": "Capitalize" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "color",
+      "label": "Color",
+      "id": "title_color",
+      "default": "#30309F"
+    },
+    {
+      "type": "text_alignment",
+      "label": "Text alignment",
+      "id": "title_alignment",
+      "default": "center"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "CST Collection Slider"
+    }
+  ]
+}
+{% endschema %}
