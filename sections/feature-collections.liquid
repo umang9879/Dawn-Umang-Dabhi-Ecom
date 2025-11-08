@@ -171,10 +171,10 @@
     {% comment %} Slider {% endcomment %}
     {% if section.settings.slider_collections.size > 0 %}
       <div class="cst-slider-container">
-        <div class="cst-slider-{{ section_id }}">
-          <div class="cst-slider-wrapper">
+        <div class="swiper cst-slider-{{ section_id }}">
+          <div class="swiper-wrapper cst-slider-wrapper">
             {% for collection in section.settings.slider_collections %}
-              <div class="cst-slide">
+              <div class="swiper-slide cst-slide">
                 <div class="cst-card-{{ section.settings.card_type }}">
                   <img
                     src="{{ collection.featured_image | image_url: width: 335, height: 450 }}"
