@@ -21,26 +21,20 @@
           <div class="cst-slider-wrapper">
             {% for collection in section.settings.slider_collections %}
               <div class="cst-slide">
-                {% if section.settings.card_type == "big" %}
-                  <div class="cst-card">
-                    <img
-                      src="{{ collection.featured_image | image_url: width: 335, height: 450 }}"
-                      alt="{{ collection.featured_image.alt | escape }}"
-                      loading="lazy"
-                      decoding="async"
-                      width="100%"
-                      height="auto"
-                      class="cst-card-img"
-                    />
-                    <div class="cst-card-info">
-                      <a class="cst-card-link">{{ collection.title }}</a>
-                    </div>
+                <div class="cst-card-{{ section.settings.card_type }}">
+                  <img
+                    src="{{ collection.featured_image | image_url: width: 335, height: 450 }}"
+                    alt="{{ collection.featured_image.alt | escape }}"
+                    loading="lazy"
+                    decoding="async"
+                    width="100%"
+                    height="auto"
+                    class="cst-card-img"
+                  />
+                  <div class="cst-card-info">
+                    <a class="cst-card-link">{{ collection.title }}</a>
                   </div>
-                {% else %}
-                  <div class="cst-card-small">
-
-                  </div>
-                {% endif %}
+                </div>
               </div>
             {% endfor %}
           </div>
