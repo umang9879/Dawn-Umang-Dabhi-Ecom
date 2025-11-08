@@ -8,6 +8,15 @@
 
 {% assign section_id = section.id | handle %}
 
+{% style %}
+  #{{ section_id }} .cst-container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding-block: 96px;
+  }
+{% endstyle %}
+
 <section id="{{ section_id }}" class="cst-section">
   <div class="cst-container">
     {% comment %} Title {% endcomment %}
