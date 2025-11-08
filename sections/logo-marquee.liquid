@@ -81,19 +81,13 @@
           slidesPerView: "auto",
           spaceBetween: {{ section.settings.blocks_gap }},
           loop: true,
-          centeredSlides: true,
           centerInsufficientSlides: true,
           allowTouchMove: false,
-          speed: 8000, // slower continuous scroll
-          freeMode: {
-            enabled: true,
-            momentum: false,
-          },
+          speed: 5000,
           autoplay: {
             delay: 0,
             disableOnInteraction: false,
           },
-          loopedSlides: 10, // prevents gap flicker
         });
       }
     });
