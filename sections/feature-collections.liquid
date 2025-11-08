@@ -171,6 +171,13 @@
     letter-spacing: 5%;
     transition: all 0.4s;
   }
+
+  @media(max-width: 768px) {
+    #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big {
+      width: 280px;
+      height: 375px;
+    }
+  }
 {% endstyle %}
 
 <section id="{{ section_id }}" class="cst-section">
