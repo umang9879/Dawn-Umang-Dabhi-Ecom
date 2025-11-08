@@ -252,12 +252,12 @@
         ],
         "card_type": "small",
         "slider_gap": 48,
-        "slider_gap_mobile": 32,
+        "slider_gap_mobile": 16,
         "nav_alignment": "center",
         "nav_color": "#30309f",
         "nav_btn_label": "FIND THE PERFECT DOOR",
         "nav_btn_link": "shopify://collections",
-        "nav_btn_type": "outline"
+        "nav_btn_type": "fill"
       }
     }
   },
