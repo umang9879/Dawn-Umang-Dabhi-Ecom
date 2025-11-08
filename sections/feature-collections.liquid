@@ -6,10 +6,21 @@
   - Fully namespaced with #section-{{ section.id }} and .cst- prefix
 {% endcomment %}
 
-<section id="{{ section.id }}" class="cst-section">
+{% assign section_id = section.id | handle %}
+
+<section id="{{ section_id }}" class="cst-section">
   <div class="cst-container">
+    {% comment %} Title {% endcomment %}
     {% if section.settings.title_text != blank %}
       <div class="cst-title">{{ section.settings.title_text }}</div>
+    {% endif %}
+    {% comment %} Slider {% endcomment %}
+    {% if section.settings.slider_collections.size > 0 %}
+      <div class="cst-slider-container">
+        <div class="cst-slider-{{ section_id }}">
+          
+        </div>
+      </div>
     {% endif %}
   </div>
 </section>
