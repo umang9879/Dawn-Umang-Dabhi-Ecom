@@ -51,15 +51,19 @@
     height: 56px;
     text-wrap: nowrap;
     white-space: nowrap;
+    transition: all 0.4s;
   }
-  #{{ section_id }} .cst-link-btn-outline {
+  #{{ section_id }} .cst-link-btn-outline,
+  #{{ section_id }} .cst-link-btn-fill:hover {
     color: #212133;
     background: transparent;
     border: 1px solid #212133;
   }
-  #{{ section_id }} .cst-link-btn-fill {
+  #{{ section_id }} .cst-link-btn-fill,
+  #{{ section_id }} .cst-link-btn-outline:hover {
     color: #fff;
     background-color: {{ section.settings.nav_color }};
+    border: 1px solid {{ section.settings.nav_color }};
   }
   #{{ section_id }} .cst-slider-btn {
     display: flex;
