@@ -234,6 +234,31 @@
         "nav_btn_link": "shopify://collections",
         "nav_btn_type": "outline"
       }
+    },
+    "feature_collections_NT4g8C": {
+      "type": "feature-collections",
+      "name": "CST Collections Slider",
+      "settings": {
+        "bg_color": "#f5f5f5",
+        "title_text": "shop by finish",
+        "title_case": "uppercase",
+        "title_color": "#30309f",
+        "title_alignment": "center",
+        "slider_collections": [
+          "frontpage",
+          "new-collection-_-ecomexperts",
+          "door-collections",
+          "test-collection-1"
+        ],
+        "card_type": "small",
+        "slider_gap": 48,
+        "slider_gap_mobile": 40,
+        "nav_alignment": "center",
+        "nav_color": "#30309f",
+        "nav_btn_label": "FIND THE PERFECT DOOR",
+        "nav_btn_link": "shopify://collections",
+        "nav_btn_type": "outline"
+      }
     }
   },
   "order": [
@@ -242,6 +267,7 @@
     "test_ecom_new_banner_tT3JfF",
     "ecom_exp_prd_grid_hXhNP4",
     "logo_marquee_3cWX8e",
-    "feature_collections_gMELK8"
+    "feature_collections_gMELK8",
+    "feature_collections_NT4g8C"
   ]
 }
