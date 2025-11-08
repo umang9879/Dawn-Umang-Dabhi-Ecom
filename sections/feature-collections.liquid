@@ -6,6 +6,19 @@
   - Fully namespaced with #section-{{ section.id }} and .cst- prefix
 {% endcomment %}
 
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<!-- Swiper JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+  defer
+></script>
+
+
 {% assign section_id = section.id | handle %}
 
 {% style %}
@@ -207,6 +220,29 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const swiper_{{ section_id }} = new Swiper('.cst-slider-{{ section_id }}', {
+        slidesPerView: {{ section.settings.slider_slides_per_view }},
+        spaceBetween: {{ section.settings.slider_gap }},
+        navigation: {
+          nextEl: '#{{ section_id }} .cst-slider-next-btn',
+          prevEl: '#{{ section_id }} .cst-slider-prev-btn',
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: {{ section.settings.slider_slides_per_view }},
+            spaceBetween: {{ section.settings.slider_gap }},
+          },
+          0: {
+            slidesPerView: {{ section.settings.slider_slides_per_view_mobile }},
+            spaceBetween: {{ section.settings.slider_gap_mobile }},
+          }
+        }
+      });
+    });
+  </script>
 </section>
 
 {% schema %}
