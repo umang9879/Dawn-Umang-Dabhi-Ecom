@@ -252,7 +252,7 @@
         ],
         "card_type": "small",
         "slider_gap": 48,
-        "slider_gap_mobile": 40,
+        "slider_gap_mobile": 32,
         "nav_alignment": "center",
         "nav_color": "#30309f",
         "nav_btn_label": "FIND THE PERFECT DOOR",
