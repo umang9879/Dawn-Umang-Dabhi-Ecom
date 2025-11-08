@@ -89,6 +89,20 @@
     height: 24px;
     fill: {{ section.settings.nav_color }};
   }
+
+  /* Slider styles */
+
+  #{{ section_id }} .cst-slider-container {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding-inline: {{ section.settings.slider_px | append: "px" }};
+  }
+  #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big {
+    display: flex;
+    position: relative;
+    
+  }
 {% endstyle %}
 
 <section id="{{ section_id }}" class="cst-section">
