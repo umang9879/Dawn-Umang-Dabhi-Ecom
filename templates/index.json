@@ -221,7 +221,9 @@
         "title_alignment": "center",
         "slider_collections": [
           "frontpage",
-          "new-collection-_-ecomexperts"
+          "new-collection-_-ecomexperts",
+          "door-collections",
+          "test-collection-1"
         ],
         "card_type": "big",
         "slider_gap": 8,
