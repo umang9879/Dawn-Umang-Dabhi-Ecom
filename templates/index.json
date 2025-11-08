@@ -235,8 +235,10 @@
         "slider_collections": [
           "frontpage",
           "new-collection-_-ecomexperts",
-          "door-collections",
-          "test-collection-1"
+          "test-collection-1",
+          "door-collections-copy-copy-1",
+          "door-collections-copy",
+          "door-collections"
         ],
         "card_type": "big",
         "slider_gap": 8,
