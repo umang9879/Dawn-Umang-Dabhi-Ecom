@@ -29,6 +29,7 @@
     padding-block: 96px;
     padding-inline: 56px;
     background-color: {{ section.settings.bg_color }};
+    box-sizing: border-box;
   }
 
   /* Title style */
@@ -42,6 +43,7 @@
     text-transform: {{ section.settings.title_case }};
     color: {{ section.settings.title_color }};
     text-align: {{ section.settings.title_alignment }};
+    box-sizing: border-box;
   }
 
   /* navigation block style */
@@ -50,6 +52,7 @@
     display: flex;
     width: 100%;
     justify-content: {{ section.settings.nav_alignment }};
+    box-sizing: border-box;
   }
   #{{ section_id }} .cst-navigations {
     display: flex;
@@ -71,6 +74,7 @@
     text-transform: uppercase;
     letter-spacing: 5%;
     transition: all 0.4s;
+    box-sizing: border-box;
   }
   #{{ section_id }} .cst-link-btn-outline,
   #{{ section_id }} .cst-link-btn-fill:hover {
@@ -99,6 +103,7 @@
     color: {{ section.settings.nav_color }};
     opacity: 1;
     transition: all 0.4s;
+    box-sizing: border-box;
   }
   #{{ section_id }} .cst-slider-btn svg {
     width: 24px;
@@ -114,6 +119,7 @@
   #{{ section_id }} .cst-slider-container {
     display: block;
     width: 100%;
+    box-sizing: border-box;
   }
   #{{ section_id }} .cst-slider-container .swiper {
     width: 100%;
@@ -131,6 +137,8 @@
     padding: 24px;
     width: 335px;
     height: 450px;
+    box-sizing: border-box;
+    overflow: hidden;
   }
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big::after {
     content: '';
@@ -145,6 +153,7 @@
     position: absolute;
     inset: 0;
     object-fit: cover;
+    box-sizing: border-box;
   }
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big .cst-card-info {
     z-index: 2;
@@ -169,6 +178,7 @@
     text-transform: uppercase;
     letter-spacing: 5%;
     transition: all 0.4s;
+    box-sizing: border-box;
   }
 
   @media(max-width: 768px) {
