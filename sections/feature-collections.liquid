@@ -178,6 +178,9 @@
       width: 280px;
       height: 375px;
     }
+    #{{ section_id }} .cst-slider-container {
+      padding-inline: {{ section.settings.slider_px_mobile | append: "px" }};
+    }
   }
 {% endstyle %}
 
@@ -251,6 +254,14 @@
           navigation: {
             nextEl: "#{{ section_id }} .cst-slider-next-btn",
             prevEl: "#{{ section_id }} .cst-slider-prev-btn",
+          },
+          breakpoints: {
+            0: {
+              spaceBetween: {{ section.settings.slider_gap_mobile }},
+            },
+            768: {
+              spaceBetween: {{ section.settings.slider_gap }},
+            },
           },
         });
       }
