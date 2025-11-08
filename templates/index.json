@@ -224,15 +224,12 @@
           "new-collection-_-ecomexperts"
         ],
         "card_type": "big",
-        "slider_slides_per_view": 5,
-        "slider_slides_per_view_mobile": 1,
         "slider_px": 64,
-        "slider_px_mobile": 64,
+        "slider_px_mobile": 0,
         "slider_gap": 8,
         "slider_gap_mobile": 8,
         "nav_alignment": "center",
         "nav_color": "#30309f",
-        "arrow_show_mobile": false,
         "nav_btn_label": "FIND THE PERFECT DOOR",
         "nav_btn_link": "shopify://collections",
         "nav_btn_type": "outline"
