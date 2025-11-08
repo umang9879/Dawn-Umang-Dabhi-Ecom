@@ -129,6 +129,8 @@
   #{{ section_id }} .cst-slider-container .swiper .swiper-slide {
     width: fit-content;
   }
+
+  /* big card type */
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big {
     position: relative;
     display: flex;
@@ -181,6 +183,14 @@
     letter-spacing: 5%;
     transition: all 0.4s;
     box-sizing: border-box;
+  }
+
+  /* small card type */
+  #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-small {
+    display: flex;
+    flex-direction: column;
+    width: 96px;
+    justify-content: flex-start;
   }
 
   @media(max-width: 768px) {
