@@ -81,12 +81,13 @@
           slidesPerView: "auto",
           spaceBetween: {{ section.settings.blocks_gap }},
           loop: true,
+          centeredSlides: true,
           centerInsufficientSlides: true,
-          allowTouchMove: false,
-          speed: 5000,
-          autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
+          allowTouchMove: true, // user can swipe manually
+          grabCursor: true,     // shows grab cursor on hover
+          speed: 600,           // normal transition speed for manual swipe
+          freeMode: {
+            enabled: false,     // optional: disable free scroll (true = momentum flick)
           },
         });
       }
