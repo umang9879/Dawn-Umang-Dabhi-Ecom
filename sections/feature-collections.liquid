@@ -111,6 +111,9 @@
     overflow: hidden;
     padding-inline: {{ section.settings.slider_px | append: "px" }};
   }
+  #{{ section_id }} .cst-slider-container .swiper {
+    width: 100%;
+  }
   #{{ section_id }} .cst-slider-{{ section_id }} .cst-card-big {
     position: relative;
     display: flex;
@@ -222,27 +225,32 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const swiper_{{ section_id }} = new Swiper('.cst-slider-{{ section_id }}', {
-        slidesPerView: {{ section.settings.slider_slides_per_view }},
-        spaceBetween: {{ section.settings.slider_gap }},
-        navigation: {
-          nextEl: '#{{ section_id }} .cst-slider-next-btn',
-          prevEl: '#{{ section_id }} .cst-slider-prev-btn',
-        },
-        breakpoints: {
-          768: {
-            slidesPerView: {{ section.settings.slider_slides_per_view }},
-            spaceBetween: {{ section.settings.slider_gap }},
+    document.addEventListener("DOMContentLoaded", function () {
+      const swiperEl = document.querySelector("#{{ section_id }} .swiper");
+
+      if (swiperEl) {
+        new Swiper(swiperEl, {
+          slidesPerView: {{ section.settings.slider_slides_per_view }},
+          spaceBetween: {{ section.settings.slider_gap }},
+          navigation: {
+            nextEl: "#{{ section_id }} .cst-slider-next-btn",
+            prevEl: "#{{ section_id }} .cst-slider-prev-btn",
           },
-          0: {
-            slidesPerView: {{ section.settings.slider_slides_per_view_mobile }},
-            spaceBetween: {{ section.settings.slider_gap_mobile }},
-          }
-        }
-      });
+          breakpoints: {
+            0: {
+              slidesPerView: {{ section.settings.slider_slides_per_view_mobile }},
+              spaceBetween: {{ section.settings.slider_gap_mobile }},
+            },
+            768: {
+              slidesPerView: {{ section.settings.slider_slides_per_view }},
+              spaceBetween: {{ section.settings.slider_gap }},
+            },
+          },
+        });
+      }
     });
   </script>
+
 </section>
 
 {% schema %}
