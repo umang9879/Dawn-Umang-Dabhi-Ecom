@@ -1,28 +1,62 @@
 {% comment %}
-  Section: Logo Marquee Infinite Scroll
-  Description: Displays an infinitely looping row of logos with adjustable settings.
+  Section: Logo Marquee (Swiper-based)
+  - Auto-slide + loop
+  - Centers slides if fewer than container width
 {% endcomment %}
 
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<!-- Swiper JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"
+  defer
+></script>
+
+{% style %}
+  #logo-marquee-{{ section.id }} {
+    width: 100%;
+    background-color: {{ section.settings.bg_color }};
+    padding-block: {{ section.settings.padding_y | append: "px" }};
+    overflow: hidden;
+    position: relative;
+  }
+
+  #logo-marquee-{{ section.id }} .swiper {
+    width: 100%;
+  }
+
+  #logo-marquee-{{ section.id }} .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  #logo-marquee-{{ section.id }} .logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96px;
+    width: fit-content;
+  }
+
+  #logo-marquee-{{ section.id }} .logo-item img {
+    height: 96px;
+    width: 178px;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+{% endstyle %}
+
 <section id="logo-marquee-{{ section.id }}" class="logo-marquee-section">
-  <div class="logo-marquee-wrapper">
-    <div class="logo-marquee-track">
+  <div class="swiper logo-marquee-swiper-{{ section.id }}">
+    <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% if block.settings.image != blank %}
-          <div class="logo-item">
-            <img
-              src="{{ block.settings.image | image_url: width: 178 }}"
-              alt="{{ block.settings.image.alt | escape }}"
-              loading="lazy"
-              height="96"
-              width="auto"
-            >
-          </div>
-        {% endif %}
-      {% endfor %}
-      <!-- Duplicate images for seamless infinite scroll -->
-      {% for block in section.blocks %}
-        {% if block.settings.image != blank %}
-          <div class="logo-item">
+          <div class="swiper-slide logo-item">
             <img
               src="{{ block.settings.image | image_url: width: 178 }}"
               alt="{{ block.settings.image.alt | escape }}"
@@ -36,120 +70,63 @@
     </div>
   </div>
 
-  <style>
-    #logo-marquee-{{ section.id }} {
-      width: 100%;
-      background-color: {{section.settings.bg_color}};
-      padding-block: {{ section.settings.padding_y | append: "px" }};
-      overflow: hidden;
-      position: relative;
-    }
-
-    #logo-marquee-{{ section.id }} .logo-marquee-wrapper {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    #logo-marquee-{{ section.id }} .logo-marquee-track {
-      display: flex;
-      flex-wrap: nowrap;
-      min-width: 100%;
-      gap: {{section.settings.blocks_gap | append: "px"}};
-      animation: marquee-{{ section.id }} {{ section.settings.speed | append:"s" }} linear infinite;
-      will-change: transform;
-    }
-
-    #logo-marquee-{{ section.id }} .logo-item {
-      flex: 0 0 auto;
-      height: 96px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #logo-marquee-{{ section.id }} .logo-item img {
-      height: 96px;
-      width: 178px;
-      object-fit: contain;
-      background: transparent;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    @keyframes marquee-{{ section.id }} {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* Optional: pause on hover */
-    #logo-marquee-{{ section.id }}:hover .logo-marquee-track {
-      animation-play-state: paused;
-    }
-  </style>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const marquee = document.querySelector("#logo-marquee-{{ section.id }} .logo-marquee-track");
-        const wrapper = document.querySelector("#logo-marquee-{{ section.id }} .logo-marquee-wrapper");
+      const swiperEl = document.querySelector(
+        "#logo-marquee-{{ section.id }} .swiper"
+      );
 
-        if (marquee && wrapper) {
-        const marqueeWidth = marquee.scrollWidth / 2; // because it's duplicated
-        const wrapperWidth = wrapper.offsetWidth;
-
-        // If total logos width is less than container width
-        if (marqueeWidth <= wrapperWidth) {
-            marquee.style.justifyContent = "center";
-            marquee.style.animation = "none";
-        }
-        }
+      if (swiperEl) {
+        new Swiper(swiperEl, {
+          slidesPerView: "auto",
+          spaceBetween: {{ section.settings.blocks_gap }},
+          loop: true,
+          centeredSlides: true,
+          centerInsufficientSlides: true,
+          speed: 3000,
+          allowTouchMove: false,
+          autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+          },
+          freeMode: {
+            enabled: true,
+            momentum: false,
+          },
+        });
+      }
     });
   </script>
-
 </section>
 
 {% schema %}
 {
-  "name": "Logo Marquee",
+  "name": "Logo Marquee (Swiper)",
   "settings": [
     {
-        "type":"color",
-        "label": "Background Color",
-        "id": "bg_color",
-        "default": "#F5F5F5"
+      "type": "color",
+      "label": "Background Color",
+      "id": "bg_color",
+      "default": "#F5F5F5"
     },
     {
-        "type": "range",
-        "label": "Padding Y",
-        "id": "padding_y",
-        "min": 0,
-        "max": 100,
-        "unit": "px",
-        "default": 72
+      "type": "range",
+      "label": "Padding Y",
+      "id": "padding_y",
+      "min": 0,
+      "max": 100,
+      "unit": "px",
+      "default": 72
     },
     {
-        "type": "range",
-        "label": "Gap Between Blocks",
-        "id": "blocks_gap",
-        "min": 0,
-        "max": 100,
-        "unit": "px",
-        "default": 32
-    },
-    {
-        "type": "range",
-        "label": "Speed",
-        "id": "speed",
-        "min": 1,
-        "max": 40,
-        "unit": "s",
-        "default": 5
-    },
+      "type": "range",
+      "label": "Gap Between Logos",
+      "id": "blocks_gap",
+      "min": 0,
+      "max": 100,
+      "unit": "px",
+      "default": 32
+    }
   ],
   "blocks": [
     {
@@ -167,7 +144,7 @@
   "max_blocks": 20,
   "presets": [
     {
-      "name": "Logo Marquee Infinite Loop",
+      "name": "Logo Marquee Swiper",
       "category": "Image"
     }
   ]
