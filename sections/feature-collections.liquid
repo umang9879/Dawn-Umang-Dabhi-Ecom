@@ -271,25 +271,30 @@
       <div class="cst-slider-container">
         <div class="swiper cst-slider-{{ section_id }}">
           <div class="swiper-wrapper cst-slider-wrapper">
-            {% for collection in section.settings.slider_collections %}
-              <div class="swiper-slide cst-slide">
-                <div class="cst-card-{{ section.settings.card_type }}">
-                  <img
-                    src="{{ collection.featured_image | image_url: width: 335, height: 450 }}"
-                    alt="{{ collection.featured_image.alt | escape }}"
-                    loading="lazy"
-                    decoding="async"
-                    width="100%"
-                    height="auto"
-                    class="cst-card-img"
-                  />
-                  <div class="cst-card-info">
-                    <a href="{{ collection.url }}" class="cst-card-link">
-                      <span>{{ collection.title }}</span>
-                    </a>
+            {% for block in section.blocks %}
+              {% if block.type == "card" %}
+                {% assign collection = block.settings.collection %}
+                {% assign image = block.settings.img | default:collection.feature_image %}
+
+                <div class="swiper-slide cst-slide">
+                  <div class="cst-card-{{ section.settings.card_type }}">
+                    <img
+                      src="{{ image | image_url: width: 335, height: 450 }}"
+                      alt="{{ image.alt | escape }}"
+                      loading="lazy"
+                      decoding="async"
+                      width="100%"
+                      height="auto"
+                      class="cst-card-img"
+                    />
+                    <div class="cst-card-info">
+                      <a href="{{ collection.url }}" class="cst-card-link">
+                        <span>{{ collection.title }}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
+              {% endif %}
             {% endfor %}
           </div>
         </div>
