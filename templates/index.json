@@ -229,7 +229,8 @@
         "card_cTaKKf": {
           "type": "card",
           "settings": {
-            "collection": "door-collections"
+            "collection": "door-collections",
+            "img": "shopify://shop_images/532008129e5b3af7930085bbba66493e5126a63b.png"
           }
         },
         "card_6MyyNd": {
