@@ -280,7 +280,7 @@
           "door-collections-copy",
           "door-collections"
         ],
-        "card_type": "small",
+        "card_type": "big",
         "slider_gap": 8,
         "slider_gap_mobile": 8,
         "nav_alignment": "center",
