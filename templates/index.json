@@ -242,13 +242,20 @@
         "card_m9fjW8": {
           "type": "card",
           "settings": {
-            "collection": ""
+            "collection": "door-collections-copy-copy"
+          }
+        },
+        "card_8tJmXA": {
+          "type": "card",
+          "settings": {
+            "collection": "new-collection-_-ecomexperts"
           }
         },
         "card_LWiWnX": {
           "type": "card",
           "settings": {
-            "collection": ""
+            "collection": "door-collections-copy-copy-1",
+            "img": "shopify://shop_images/f466863181ae785258ddf6420ec54e51e6fcb594.png"
           }
         },
         "card_W9tLWt": {
@@ -262,6 +269,7 @@
         "card_cTaKKf",
         "card_6MyyNd",
         "card_m9fjW8",
+        "card_8tJmXA",
         "card_LWiWnX",
         "card_W9tLWt"
       ],
