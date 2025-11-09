@@ -298,12 +298,60 @@
         "nav_btn_type": "outline"
       }
     },
-    "feature_collections_9LJcnc": {
+    "feature_collections_U3tNay": {
       "type": "feature-collections",
+      "blocks": {
+        "card_34zNrg": {
+          "type": "card",
+          "settings": {
+            "collection": "door-collections",
+            "img": "shopify://shop_images/532008129e5b3af7930085bbba66493e5126a63b.png"
+          }
+        },
+        "card_ip9XdP": {
+          "type": "card",
+          "settings": {
+            "collection": "test-collection-1"
+          }
+        },
+        "card_zwwQGr": {
+          "type": "card",
+          "settings": {
+            "collection": "door-collections-copy-copy"
+          }
+        },
+        "card_DQeYXE": {
+          "type": "card",
+          "settings": {
+            "collection": "new-collection-_-ecomexperts"
+          }
+        },
+        "card_GhMeyn": {
+          "type": "card",
+          "settings": {
+            "collection": "door-collections-copy-copy-1",
+            "img": "shopify://shop_images/f466863181ae785258ddf6420ec54e51e6fcb594.png"
+          }
+        },
+        "card_t4HGGq": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_34zNrg",
+        "card_ip9XdP",
+        "card_zwwQGr",
+        "card_DQeYXE",
+        "card_GhMeyn",
+        "card_t4HGGq"
+      ],
       "name": "CST Collections Slider",
       "settings": {
         "bg_color": "#f5f5f5",
-        "title_text": "Shop by finish",
+        "title_text": "Doors for every home",
         "title_case": "uppercase",
         "title_color": "#30309f",
         "title_alignment": "center",
@@ -314,34 +362,6 @@
           "door-collections-copy-copy-1",
           "door-collections-copy",
           "door-collections"
-        ],
-        "card_type": "small",
-        "slider_gap": 8,
-        "slider_gap_mobile": 8,
-        "nav_alignment": "center",
-        "nav_color": "#30309f",
-        "nav_btn_label": "FIND THE PERFECT DOOR",
-        "nav_btn_link": "shopify://collections",
-        "nav_btn_type": "fill"
-      }
-    },
-    "feature_collections_NT4g8C": {
-      "type": "feature-collections",
-      "name": "CST Collections Slider",
-      "settings": {
-        "bg_color": "#f5f5f5",
-        "title_text": "shop by finish",
-        "title_case": "uppercase",
-        "title_color": "#30309f",
-        "title_alignment": "center",
-        "slider_collections": [
-          "frontpage",
-          "new-collection-_-ecomexperts",
-          "door-collections",
-          "test-collection-1",
-          "door-collections-copy-copy",
-          "door-collections-copy",
-          "door-collections-copy-copy-1"
         ],
         "card_type": "small",
         "slider_gap": 48,
@@ -361,7 +381,6 @@
     "ecom_exp_prd_grid_hXhNP4",
     "logo_marquee_3cWX8e",
     "feature_collections_gMELK8",
-    "feature_collections_9LJcnc",
-    "feature_collections_NT4g8C"
+    "feature_collections_U3tNay"
   ]
 }
