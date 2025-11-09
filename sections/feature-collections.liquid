@@ -274,7 +274,7 @@
             {% for block in section.blocks %}
               {% if block.type == "card" %}
                 {% assign collection = block.settings.collection %}
-                {% assign image = block.settings.img | default:collection.feature_image %}
+                {% assign image = block.settings.img | default:collection.featured_image %}
 
                 <div class="swiper-slide cst-slide">
                   <div class="cst-card-{{ section.settings.card_type }}">
