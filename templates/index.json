@@ -225,6 +225,45 @@
     },
     "feature_collections_gMELK8": {
       "type": "feature-collections",
+      "blocks": {
+        "card_cTaKKf": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "card_6MyyNd": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "card_m9fjW8": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "card_LWiWnX": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "card_W9tLWt": {
+          "type": "card",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_cTaKKf",
+        "card_6MyyNd",
+        "card_m9fjW8",
+        "card_LWiWnX",
+        "card_W9tLWt"
+      ],
       "name": "CST Collections Slider",
       "settings": {
         "bg_color": "#f5f5f5",
