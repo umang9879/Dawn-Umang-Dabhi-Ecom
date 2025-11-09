@@ -6,11 +6,11 @@
   - Fully namespaced with #section-{{ section.id }} and .cst- prefix
 {% endcomment %}
 
+{% assign section_id = section.id | handle %}
+
 <!-- Swiper CSS & JS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer ></script>
-
-{% assign section_id = section.id | handle %}
 
 {% style %}
   #{{ section_id }} .cst-container {
